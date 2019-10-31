@@ -1,0 +1,137 @@
+.tv-chief-researcher{
+	padding-top:20px;
+	@include mq($mobile) {
+		padding:6px 0;
+	}
+	.chief-list{
+		// @include cf;
+		// padding-top:20px;
+		// margin:-10px -4px;
+		margin-top:20px;
+		margin-bottom:5px;
+		.cf-li{
+			.chief-in{
+				// transition:.4s;
+				@include box-sizing;
+				height:403px;
+				padding:10px;
+				background-color:#fff;
+				border:1px solid #ebe5da;
+			}
+		}
+		img{
+			width:180px;
+			height:303px;
+		}
+		.bottom-ab-box{
+			position: absolute;
+			bottom:0;
+			left:0;
+			width:100%;
+			// background-color:#fff;
+			padding:10px;
+			@include box-sizing;
+			// margin:1px;
+			.gd-txt{
+				transition: height .4s;
+				// padding-top:22px;
+				// padding-bottom:22px;
+				@include box-sizing;
+				background-color:#fff;
+				height:0px;
+				padding:0px;
+				.in-tt{
+					font-size:16px;
+					color:#fff;
+					text-align:center;
+					letter-spacing:-1px;
+					overflow:hidden;
+					text-overflow:ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp:3;
+					-webkit-box-orient:vertical;
+				}
+			}
+			.btn-ab{
+				.main-btn{
+					width:100%;
+					&:first-child{
+						margin-bottom:10px;
+					}
+				}
+			}
+		}
+	}
+
+	.name{
+		position:absolute;
+		top:25px;
+		left:0;
+		right:0;
+		margin:0 auto;
+		text-align: center;
+		strong{
+			font-size:18px;
+			font-weight:700;
+			color:#fff;
+		}
+	}
+
+	.owl-item{
+		&.center{
+			.chief-in{
+				position: relative;
+				background-color:#425e99;
+			}
+			.bottom-ab-box{
+				background-color:#425e99;
+				.gd-txt{
+					height:103px;
+					padding-top:12px;
+					padding-bottom:25px;
+					background-color:#425e99;
+					.in-tt{
+						color:#fff;
+					}
+				}
+				.btn-ab{
+					.blue-c{
+						background-color:#fff;
+						color:#425e99;
+					}
+				}
+			}
+		}
+	}
+
+	.chief-research-list{
+		ul{
+			@include cf;
+			margin: 21px -10px 0;
+			li{
+				@include box-sizing;
+				padding:0 10px;
+				float:left;
+				width:50%;
+				@include mq($mobile) {
+					width:100%;
+					margin-bottom:10px;
+					&:last-child{
+						margin-bottom:0;
+					}
+				}
+				@include mq($tablet) {
+					width:50%;
+				}
+				a{
+					display:block;
+				}
+				img{
+					width:100%;
+				}
+			}
+		}
+	}
+
+
+}

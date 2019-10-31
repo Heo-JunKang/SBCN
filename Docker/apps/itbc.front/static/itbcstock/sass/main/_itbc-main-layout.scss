@@ -1,0 +1,13 @@
+/* itbc row banner */
+.itbc-main-h2{
+	font-size:24px;
+	font-weight:600;
+	color:#333;
+	margin-bottom:16px;
+	@include mq($mobile) {
+		font-size:18px;
+	}
+	@include mq($tablet) {
+		font-size:20px;
+	}
+}

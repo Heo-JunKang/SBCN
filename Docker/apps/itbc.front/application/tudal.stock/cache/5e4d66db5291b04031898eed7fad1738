@@ -1,0 +1,1081 @@
+<?php $__env->startSection('js'); ?>
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <!-- Chart code -->
+    <script>
+        am4core.ready(function() {
+            // Themes begin
+            am4core.useTheme(am4themes_animated);
+            // Themes end
+
+            var datas = '<?php $a="aaa";  echo $a; ?>';
+            console.log(12);
+            console.log(datas);
+
+            // Create chart
+            var chart = am4core.create("chartdiv", am4charts.XYChart);
+            chart.paddingRight = 20;
+
+            chart.data = generateChartData();
+
+            var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.baseInterval = {
+                "timeUnit": "minute",
+                "count": 1
+            };
+            dateAxis.tooltipDateFormat = "HH:mm, d MMMM";
+
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.tooltip.disabled = true;
+            valueAxis.title.text = "";
+
+            var series = chart.series.push(new am4charts.LineSeries());
+            series.dataFields.dateX = "date";
+            series.dataFields.valueY = "visits";
+            series.tooltipText = "Visits: [bold]{valueY}[/]";
+            series.fillOpacity = 0.3;
+
+
+            chart.cursor = new am4charts.XYCursor();
+            chart.cursor.lineY.opacity = 0;
+            chart.scrollbarX = new am4charts.XYChartScrollbar();
+            chart.scrollbarX.series.push(series);
+
+
+            chart.events.on("datavalidated", function () {
+                dateAxis.zoom({start:0, end:1});
+            });
+
+
+            function generateChartData() {
+                var chartData = [];
+                // current date
+                var firstDate = new Date();
+                // now set 500 minutes back
+                firstDate.setMinutes(firstDate.getDate() - 500);
+
+                // and generate 500 data items
+                var visits = 500;
+                for (var i = 0; i < 500; i++) {
+                    var newDate = new Date(firstDate);
+                    // each time we add one minute
+                    newDate.setMinutes(newDate.getMinutes() + i);
+                    // some random number
+                    visits += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
+                    // add data item to the array
+                    chartData.push({
+                        date: newDate,
+                        visits: visits
+                    });
+                }
+                return chartData;
+            }
+
+        }); // end am4core.ready()
+    </script>
+    <script src="<?php echo e(config_item('js_url_service')); ?>main.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+    <script src="<?php echo e(config_item('js_url_service')); ?>experience.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script type="text/javascript">
+        $(document).on('click','.btn-show-broadcast',function() {
+            var src    = $(this).data('src');
+
+            $('#broadcast').attr('src',src);
+        });
+
+        var IMAGE_URL = '<?php echo e(config_item("image_url")); ?>';
+
+        function getHsignalList(){
+            var html = '';
+            $.ajax({
+                type:"GET",
+                url: "https://api.tudal.in/stock/market?page=1&per_page=5&order=issue_date%20desc&market_type%5B%5D=%ED%8F%AC%EC%B0%A9&market_type%5B%5D=%EC%9D%B8%ED%8F%AC",
+                data : "",
+                dataType:"json",
+                beforeSend:function(jqXHR, settings) {
+                },
+                success:function(data, textStatus, jqXHR) {
+                    var html = "";
+                    var rows = data.contents.items;
+                    if(rows!=null){
+                        $.each(rows, function(idx, row) {
+                            html += '<li class="catch-ev-li"><div class="left-con"><p class="txt">'+row.shname+'<span>'+row.meta_data.close.numberFormat()+'원</span></p></div>';
+                            html += '<div class="right-con"><p class="txt">포착<br><span>'+row.issue_time+' '+row.market_type+'</span></p></div></li>';
+                        }); //each
+                    }
+                    $("#signalbox01").html(html)
+                },
+                complete:function(jqXHR, settings) {
+                    return;
+                },
+                error:function( jqXHR, textStatus, errorThrown ) {
+                    //console.log(jqXHR.status + "[" + textStatus + "] " + errorThrown);
+                    try {
+                        var res = jqXHR.responseJSON;
+                        console.log(res.msg);
+                    } catch (ex) {
+                        console.log(ex.message);
+                    }
+                    return;
+                }
+            }); // $.ajax
+        };
+
+        function getAIsignalList(){
+            var html = '';
+            $.ajax({
+                type:"GET",
+                url: "https://api.tudal.in/stock/ra_signal?page=1&per_page=5&order=signal_cnt%20desc%2C%20fluctuation_rate%20desc&max_ymd=Y",
+                data : "",
+                dataType:"json",
+                beforeSend:function(jqXHR, settings) {
+                },
+                success:function(data, textStatus, jqXHR) {
+
+                    var html = "";
+                    var rows = data.contents.items;
+
+                    if(rows!=null){
+                        $.each(rows, function(idx, row) {
+                            var signal_array = row.condsearch_seqs.split(',');
+
+                            html += '<li class="catch-ev-li signalbox02_li" value="'+row.shcode+'"> <div class="left-con"><p class="txt">'+(idx+1)+'위. '+row.shname+'</p><ul class="number-ico-list">';
+
+                            $.each(signal_array, function(id,signal){
+                                var img = IMAGE_URL+'content/img_signal_'+signal+'.png';
+                                html += '<li><img src="'+img+'" alt=""></li>';
+                            });
+
+                            html += '</ul></div><div class="right-con" style="height:43px;">';
+
+                            var txt_color = (row.fluctuation_rate < 0)? 'blue' : '';
+                            html += '<p class="txt signalbox2_pr '+txt_color+'" id="signalbox02_pr'+idx+'" style="line-height:45px;"></p></div></li>';
+
+                        }); //each
+                        $("#signalbox02").html(html).bind();
+
+                    }
+                },
+
+                complete:function(jqXHR, settings) {
+                    updateStockDatas();
+                    return;
+                },
+                error:function( jqXHR, textStatus, errorThrown ) {
+                    //console.log(jqXHR.status + "[" + textStatus + "] " + errorThrown);
+                    try {
+                        var res = jqXHR.responseJSON;
+                        console.log(res.msg);
+                    } catch (ex) {
+                        console.log(ex.message);
+                    }
+                    return;
+                }
+            }); // $.ajax
+        };
+
+        function getTsignalList(){
+            var html = '';
+            $.ajax({
+                type:"GET",
+                url: "https://api.tudal.in/etv/tsignal",
+                data : "",
+                dataType:"json",
+
+                beforeSend:function(jqXHR, settings) {
+                },
+                success:function(data, textStatus, jqXHR) {
+                    var html = "";
+                    var rows = data.signals;
+                    var rlength = rows.length ? rows.length : 0 ;
+                    if(rows != null){
+                        $.each(rows, function(idx, row) {
+                            var timeexp = row.txtime.substring(0,2)+':'+row.txtime.substring(3,5)+' 포착';
+
+                            html +='<li class="catch-ev-li"><div class="left-con"><p class="txt">'+row.hname+'<span>'+row.close.numberFormat()+'원</span></p></div>';
+                            html +='<div class="right-con"><p class="txt">'+signalnames[row.condsearch_seq]+'<br><span>'+timeexp+'</span></p></div></li>';
+
+                            if(idx==4) return false;
+                        }); //each
+                    }
+                    if( !rows || rlength==0 ){
+                        html = '<li class="catch-ev-li"><div class="list-none"><p class="none-txt">개장 전입니다.</p></div></li>';
+                    }
+                    $("#signalbox03").html(html);
+                },
+                complete:function(jqXHR, settings) {
+                    return;
+                },
+                error:function( jqXHR, textStatus, errorThrown ) {
+                    //console.log(jqXHR.status + "[" + textStatus + "] " + errorThrown);
+                    try {
+                        var res = jqXHR.responseJSON;
+                        console.log(res.msg);
+                    } catch (ex) {
+                        console.log(ex.message);
+                    }
+                    return;
+                }
+            }); // $.ajax
+        };
+
+        function updateStockData(shcode, idx){
+            $.ajax({
+                type:"POST",
+                url: "/redis/stock_price",
+                data : {"shcode": shcode},
+                dataType:"json",
+                beforeSend:function(jqXHR, settings) {
+                },
+                success:function(data, textStatus, jqXHR) {
+
+                    var prId = 'signalbox02_pr'+idx;
+                    var proId = 'signalbox02_pro'+idx;
+
+                    var plus = (parseFloat(data.data.diff) < 0)? '' : '+' ;
+                    html = plus + parseFloat(data.data.diff).toFixed(2)+'%<br><span></span>';
+
+                    document.getElementById(prId).innerHTML = html;
+
+                },
+                complete:function(jqXHR, settings) {
+                    return;
+                },
+                error:function( jqXHR, textStatus, errorThrown ) {
+                    //console.log(jqXHR.status + "[" + textStatus + "] " + errorThrown);
+                    try {
+                        var res = jqXHR.responseJSON;
+                        console.log(res.msg);
+                    } catch (ex) {
+                        console.log(ex.message);
+                    }
+                    return;
+                }
+            }); // $.ajax
+        };
+
+        function updateStockDatas(){
+            $(".signalbox02_li").each(function(idx) {
+                var shcode = $(this).attr('value');
+                updateStockData(shcode, idx);
+            });
+        }
+
+        //timestamp update
+        function updateSignalTime(docId){
+
+            if(docId!=='reset-time-01' && docId!=='reset-time-02') return;
+
+            var dateStr = (new Date().addHours(9)).toISOString().substring(0,10);
+            var timeStr = (new Date().addHours(9)).toISOString().substring(11,19);
+
+            var html  = '';
+            html += '<span class="day">'+dateStr+'</span><br><span class="time">'+timeStr+'</span><i class="reset-ico spinimage"></i>';
+            document.getElementById(docId).innerHTML = html;
+        }
+
+        <?php /*//방송편성표 url연결*/ ?>
+        <?php /*function brodcast(){*/ ?>
+        <?php /*$(document).on('click','.onair-main-list-wrap',function() {*/ ?>
+        <?php /*var brodcast_url = '<?php echo e($broadcast_url); ?>';*/ ?>
+        <?php /*window.open(brodcast_url, "itbc방송");*/ ?>
+        <?php /*});*/ ?>
+        <?php /*}*/ ?>
+
+        //youtube url api
+        function youtubeurl01(){
+            $.ajax({
+                type:"GET",
+                url: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=4&playlistId=PLrrN6wmuXiLrQEPuAdPn8rWox-gbMy_Vu&key=AIzaSyClmu1mWH2b6tIeTqjqvcf6F5hps000yxc",
+                data : "",
+                dataType:"json",
+                xhrFields : {withCredentials:true},
+                beforeSend:function(jqXHR, settings) {
+                },
+                success:function(data) {
+                    console.log(data);
+                    var html = "";
+                    var rows = data.items;
+                    var rlength = rows.length ? rows.length : 0 ;
+                    if(rows != null){
+                        html +='<li class="professional-li">';
+                        html +='<iframe width="100%" height="auto" src="https://www.youtube.com/embed/'+rows[0].snippet.resourceId.videoId+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        html +='</li>';
+                        html +='<li class="professional-li">';
+                        html +='<iframe width="100%" height="auto" src="https://www.youtube.com/embed/'+rows[1].snippet.resourceId.videoId+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        html +='</li>';
+                        html +='<li class="professional-li">';
+                        html +='<iframe width="100%" height="auto" src="https://www.youtube.com/embed/'+rows[2].snippet.resourceId.videoId+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        html +='</li>';
+                        html +='<li class="professional-li">';
+                        html +='<iframe width="100%" height="auto" src="https://www.youtube.com/embed/'+rows[3].snippet.resourceId.videoId+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        html +='</li>';
+                    }
+                    if( !rows || rlength==0 ){
+                        html = '<li class="catch-ev-li"><div class="list-none"><p class="none-txt">개장 전입니다.</p></div></li>';
+                    }
+                    $("#youtubebox01").html(html);
+                },
+                complete:function(jqXHR, settings) {
+                    return;
+                },
+                error:function( jqXHR, textStatus, errorThrown ) {
+                    //console.log(jqXHR.status + "[" + textStatus + "] " + errorThrown);
+                    try {
+                        var res = jqXHR.responseJSON;
+                        console.log(res.msg);
+                    } catch (ex) {
+                        console.log(ex.message);
+                    }
+                    return;
+                }
+            }); // $.ajax
+        }
+
+        function youtubeurl02(){
+            $.ajax({
+                type:"GET",
+                url: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=4&playlistId=PLrrN6wmuXiLqnC2_dgS714LDoK_nj_YjV&key=AIzaSyClmu1mWH2b6tIeTqjqvcf6F5hps000yxc",
+                data : "",
+                dataType:"json",
+                xhrFields : {withCredentials:true},
+                beforeSend:function(jqXHR, settings) {
+                },
+                success:function(data) {
+                    var html = "";
+                    var rows = data.items;
+                    var rlength = rows.length ? rows.length : 0 ;
+                    if(rows != null){
+                        html +='<li class="professional-li">';
+                        html +='<iframe width="100%" height="auto" src="https://www.youtube.com/embed/'+rows[0].snippet.resourceId.videoId+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        html +='</li>';
+                        html +='<li class="professional-li">';
+                        html +='<iframe width="100%" height="auto" src="https://www.youtube.com/embed/'+rows[1].snippet.resourceId.videoId+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        html +='</li>';
+                        html +='<li class="professional-li">';
+                        html +='<iframe width="100%" height="auto" src="https://www.youtube.com/embed/'+rows[2].snippet.resourceId.videoId+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        html +='</li>';
+                        html +='<li class="professional-li">';
+                        html +='<iframe width="100%" height="auto" src="https://www.youtube.com/embed/'+rows[3].snippet.resourceId.videoId+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                        html +='</li>';
+                    }
+                    if( !rows || rlength==0 ){
+                        html = '<li class="catch-ev-li"><div class="list-none"><p class="none-txt">개장 전입니다.</p></div></li>';
+                    }
+                    $("#youtubebox02").html(html);
+                },
+                complete:function(jqXHR, settings) {
+                    return;
+                },
+                error:function( jqXHR, textStatus, errorThrown ) {
+                    //console.log(jqXHR.status + "[" + textStatus + "] " + errorThrown);
+                    try {
+                        var res = jqXHR.responseJSON;
+                        console.log(res.msg);
+                    } catch (ex) {
+                        console.log(ex.message);
+                    }
+                    return;
+                }
+            }); // $.ajax
+        }
+
+        $(document).ready(function(){
+            brodcast();
+            youtubeurl01();
+            youtubeurl02();
+            getHsignalList();
+            updateSignalTime('reset-time-01');
+            getAIsignalList();
+            getTsignalList();
+            updateSignalTime('reset-time-02');
+            popupClose();
+            //worker start
+            startWorker();
+
+        });
+
+        // worker functions
+        var worker;
+        function startWorker() {
+
+            // Check Worker support
+            if ( !!window.Worker ) {
+
+                // init
+                if ( worker ) {
+                    //stopWorker();
+                }
+
+                //loading
+                worker = new Worker( '<?php echo e(config_item('js_url_service')); ?>worker.js' );
+                worker.postMessage( '{name: run worker}' );    // 워커에 메시지를 보낸다.
+
+                // triggers
+                worker.onmessage = function( e ) {
+                    if(e.data==='signal_updater'){
+                        getHsignalList();
+                        updateSignalTime('reset-time-01');
+
+                        getAIsignalList();
+
+                        getTsignalList();
+                        updateSignalTime('reset-time-02');
+                    }
+                };
+            }
+
+        }
+        function popupClose(){
+            var todayDate = new Date();
+            var today = todayDate.getDate(); //오늘 날짜
+            var cancleDate = ''; //체크 날짜
+            if($.cookie('cancleday')){
+                cancleDate = $.cookie('cancleday');
+            }else{
+                cancleDate = 'false';
+            }
+            if(today == cancleDate){
+                $("#main-modal-2").hide();
+            }
+            $(".close-pop").click(function(){
+                if($("input:checkbox[name=main-modal-2]").is(":checked")){
+                    $.cookie('cancleday', todayDate.getDate());
+                }
+                $("#main-modal-2").hide();
+            });
+        }
+
+
+    </script>
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo e($title); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <!-- air-list -->
+    <div class="main-youtube">
+        <div class="today-brodcast-wrap">
+            <div class="today-brodcast">
+                <a class="today-brodcast-name">
+                    TODAY   |   [10:30~11:00] #생방송 #특징주 #관심주 #HOT 종목 분석 및 전망!
+                </a>
+            </div>
+        </div>
+        <div class="itbc-main-air-list-wrap">
+            <div class="youtube-main">
+                <div class="youtube-main-in">
+                    <iframe src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <?php /*<div class="youtube-in">*/ ?>
+                <?php /*<div class="youtube-in-padding">*/ ?>
+                <?php /*<div class="youtube-tudal-img">*/ ?>
+                <?php /*<img class="" src="<?php echo e(config_item('image_url')); ?>header/center_logo.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+                <?php /*</div>*/ ?>
+                <?php /*<div class="youtube-tudal-content">*/ ?>
+                <?php /*<div class="youtube-tudal-name">*/ ?>
+                <?php /*<a>시장에 순응하는 순리매매</a>*/ ?>
+                <?php /*</div>*/ ?>
+                <?php /*<div class="youtube-tudal-cont">*/ ?>
+                <?php /*<a>파스칼</a>*/ ?>
+                <?php /*</div>*/ ?>
+                <?php /*</div>*/ ?>
+                <?php /*</div>*/ ?>
+                <?php /*</div>*/ ?>
+            </div>
+            <div class="tudal-brodcast-name">
+                <a class="brodcast-name-01">증권연구원</a>
+                <a class="brodcast-name-02">전체</a>
+            </div>
+            <div class="tudal-slide">
+                <input type="radio" name="pos" id="tudal-pos1" checked>
+                <input type="radio" name="pos" id="tudal-pos2">
+                <input type="radio" name="pos" id="tudal-pos3">
+                <ul>
+                    <li>
+                        <div class="organizational-main">
+                            <div class="org-list">
+                                <ul>
+                                    <?php foreach(array_slice($stores->contents->items, 0, 5 ) as $v): ?>
+                                        <li class="before">
+                                            <a href="#none">
+                                                <div class="time-zone">
+                                                    <img class="expert-img" src="<?php echo e(config_item('image_url')); ?>expert/안태일.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">
+                                                </div>
+                                                <div class="title-zone">
+                                                    <strong><?php echo e($v->title); ?></strong>
+                                                    <span><?php echo e($v->slogan); ?></span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="organizational-main">
+                            <div class="org-list">
+                                <ul>
+                                    <?php foreach(array_slice($stores->contents->items, 5, 10) as $v): ?>
+                                        <li class="before">
+                                            <a href="#none">
+                                                <div class="time-zone">
+                                                    <img class="expert-img" src="<?php echo e(config_item('image_url')); ?>expert/안태일.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">
+                                                </div>
+                                                <div class="title-zone">
+                                                    <strong><?php echo e($v->title); ?></strong>
+                                                    <span><?php echo e($v->slogan); ?></span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li></li>
+                    <li></li>
+                </ul>
+
+                <p class="tudal-bullet">
+                    <label for="tudal-pos1">∧</label>
+                    <label for="tudal-pos2">∨</label>
+                </p>
+
+            </div>
+        </div>
+        <div class="tudal-m-slide-wrap" style="padding-top: 44px; display:none;">
+
+        </div>
+        <!-- 처음 방문하셨나요? -->
+        <div class="first-visit-guide part-pd-15">
+            <div style="width:100%">
+                <a href="http://www.itbc.news/" target="_blank"><img src="<?php echo e(config_item('image_url')); ?>tudal-main/main_center_banner_01.png" alt=""></a>
+            </div>
+        </div>
+        <!--  처음 방문하셨나요? -->
+    </div>
+        <div class="divi-box mob-select-bx">
+            <?php /*<div class="shadowbox">*/ ?>
+                <div class="main-tab-menu-wrap">
+                    <div class="tab-menu-bt-zone">
+                        <div class="center-size-1140">
+                        <div class="menu-txt item on"><a href="#tab01-01" class="menu-a">실시간시황</a></div>
+                        <div class="menu-txt item"><a href="#tab01-02" class="menu-a">실적속보</a></div>
+                        <!-- <div class="menu-txt item"><a href="#tab01-03" class="menu-a">기업탐방</a></div> -->
+                        <div class="menu-txt item"><a href="#tab01-04" class="menu-a">주요뉴스</a></div>
+                        </div>
+                    </div>
+                    <div class="tab-menu-select-zone js-select-cus">
+                        <div class="label-box"><span>실시간시황</span></div>
+                        <select>
+                            <option value="#tab01-01">실시간시황</option>
+                            <option value="#tab01-02">실적속보</option>
+                            <!-- <option value="#tab01-03">기업탐방</option> -->
+                            <option value="#tab01-04">주요뉴스</option>
+                        </select>
+                    </div>
+                    <div class="tab-menu-con-wrap">
+                        <div id="tab01-01" class="con-box box1" style="display: block;">
+                            <div class="notic-list-type-box">
+                                <div class="itbc-main-professional-wrap">
+                                    <?php /*<div class="shadowbox">*/ ?>
+                                    <div class="profes-part">
+                                        <div class="main-youtube-part">
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑1] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                        </div>
+                                        <div class="main-youtube-part2">
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php /*</div>*/ ?>
+                                    <div class="ba-line-wrap">
+                                        <a class="ba-line">더보기</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab01-02" class="con-box box2">
+                            <div class="notic-list-type-box">
+                                <div class="itbc-main-professional-wrap">
+                                    <?php /*<div class="shadowbox">*/ ?>
+                                    <div class="profes-part">
+                                        <div class="main-youtube-part">
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑2] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                        </div>
+                                        <div class="main-youtube-part2">
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php /*</div>*/ ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab01-04" class="con-box box4">
+                            <div class="notic-list-type-box">
+                                <div class="itbc-main-professional-wrap">
+                                    <?php /*<div class="shadowbox">*/ ?>
+                                    <div class="profes-part">
+                                        <div class="main-youtube-part">
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑4] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                        </div>
+                                        <div class="main-youtube-part2">
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                            <div class="youtube-part-out">
+                                                <div class="">
+                                                    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/V4MRS83s7Xw" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+                                                <div class="youtube-name">[모닝브리핑] 文대통령·트럼프, 정상회담</div>
+                                                <div class="youtube-content">생존시황</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php /*</div>*/ ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php /*</div>*/ ?>
+        </div>
+
+
+    <!-- //air-list -->
+    <!-- bottom-fix-size-box -->
+    <div class="bottom-fix-size-box">
+    <?php /*<div class="shadowbox" style="display: table-cell;">*/ ?>
+
+    <?php /*<div class="back-shadow int-philosophy-list-pg">*/ ?>
+    <?php /*<h2 class="main-hd bdb-x" style="margin-bottom: 20px;margin-top: 25px; text-align: center;font-weight: bold;font-size: 22px;"><strong>itbcstock</strong>은 수익으로 증명합니다.</h2>*/ ?>
+    <?php /*<img src="<?php echo e(config_item('image_url')); ?>landing/jo/images/main_anal.png">*/ ?>
+    <?php /*<ul class="int-phi-ul" style="display:inline-block; margin-top:0px;">*/ ?>
+    <?php /*<li class="int-phi-li2">*/ ?>
+    <?php /*<div class="int-phi-box">*/ ?>
+    <?php /*<img class="pic" src="<?php echo e(config_item('image_url')); ?>itbc-main/profit01.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</li>*/ ?>
+    <?php /*<li class="int-phi-li2">*/ ?>
+    <?php /*<div class="int-phi-box">*/ ?>
+    <?php /*<img class="pic" src="<?php echo e(config_item('image_url')); ?>itbc-main/profit02.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</li>*/ ?>
+    <?php /*<li class="int-phi-li2">*/ ?>
+    <?php /*<div class="int-phi-box">*/ ?>
+    <?php /*<img class="pic" src="<?php echo e(config_item('image_url')); ?>itbc-main/profit03.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</li>*/ ?>
+    <?php /*<li class="int-phi-li2">*/ ?>
+    <?php /*<div class="int-phi-box">*/ ?>
+    <?php /*<img class="pic" src="<?php echo e(config_item('image_url')); ?>itbc-main/profit04.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</li>*/ ?>
+    <?php /*<li class="int-phi-li2">*/ ?>
+    <?php /*<div class="int-phi-box">*/ ?>
+    <?php /*<img class="pic" src="<?php echo e(config_item('image_url')); ?>itbc-main/profit05.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</li>*/ ?>
+    <?php /*<li class="int-phi-li2">*/ ?>
+    <?php /*<div class="int-phi-box">*/ ?>
+    <?php /*<img class="pic" src="<?php echo e(config_item('image_url')); ?>itbc-main/profit06.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</li>*/ ?>
+    <?php /*<li class="int-phi-li2">*/ ?>
+    <?php /*<div class="int-phi-box">*/ ?>
+    <?php /*<img class="pic" src="<?php echo e(config_item('image_url')); ?>itbc-main/profit07.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</li>*/ ?>
+    <?php /*<li class="int-phi-li2">*/ ?>
+    <?php /*<div class="int-phi-box">*/ ?>
+    <?php /*<img class="pic" src="<?php echo e(config_item('image_url')); ?>itbc-main/profit08.png?ver=<?php echo e(config_item('img_ver')); ?>" alt="">*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</li>*/ ?>
+    <?php /*</ul>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*<div class="back-shadow int-philosophy-list-pg">*/ ?>
+    <?php /*<h2 class="main-hd bdb-x" style="margin-bottom: 20px;margin-top: 40px; text-align: center;font-weight: bold;font-size: 21px;">수익 체험은 3일이면 충분합니다</h2>*/ ?>
+    <?php /*<div style="text-align: center;">*/ ?>
+    <?php /*<a href="/landing/jo" target="_blank">*/ ?>
+    <?php /*<img src="<?php echo e(config_item('image_url')); ?>landing/jo/images/btn.gif" alt="Image" class="img-fluid">*/ ?>
+    <?php /*</a>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+
+    <?php /*<!---->*/ ?>
+    <?php /*</div>*/ ?>
+
+
+
+    <!-- itbcstock youtubue -->
+
+
+
+
+        <!-- 최고 종목 수익률 -->
+    <?php /*<div class="rate-rank part-pd-15">*/ ?>
+    <?php /*<div class="shadowbox">*/ ?>
+    <?php /*<table class="rank-tb">*/ ?>
+    <?php /*<tr class="rank-tb-title">*/ ?>
+    <?php /*<th colspan='3'><a>최고 종목 수익률</a></th>*/ ?>
+    <?php /*<th colspan='3'><a>월간 계좌 수익률 TOP</a></th>*/ ?>
+    <?php /*<th colspan='3'><a>주간 계좌 수익률 TOP</a></th>*/ ?>
+    <?php /*</tr>*/ ?>
+    <?php /*<tr class="rank-tb-body-01">*/ ?>
+    <?php /*<!--    최고종목 수익률 1위 -->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td>*/ ?>
+    <?php /*<a href="/landing/jo">*/ ?>
+    <?php /*<img src="<?php echo e(config_item('image_url')); ?>content/rank/img_gold.png">*/ ?>
+    <?php /*<img src="<?php echo e(config_item('image_url')); ?>content/rank/jo.png">*/ ?>
+    <?php /*</a>*/ ?>
+    <?php /*<a href="/landing/jo">조대표 사단</a>*/ ?>
+    <?php /*<span>셀리버리</br><span>171.6</span><a>%</a></span>*/ ?>
+    <?php /*</td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<!--	월간 계좌 수익률 TOP 1위-->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td><span>1</span><h6>조대표 사단</h6></td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<!--	주간 계좌 수익률 TOP 1위-->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td><span>1</span><h6>조대표 사단</h6></td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*</tr>*/ ?>
+    <?php /*<tr class="rank-tb-body-02">*/ ?>
+    <?php /*<!--    최고종목 수익률 2위 -->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td>*/ ?>
+    <?php /*<a href="/stores/flower-road">*/ ?>
+    <?php /*<img src="<?php echo e(config_item('image_url')); ?>content/rank/img_silver.png">*/ ?>
+    <?php /*<img src="<?php echo e(config_item('image_url')); ?>content/rank/traderJ.png">*/ ?>
+    <?php /*</a>*/ ?>
+    <?php /*<a href="/stores/traderJ">trader J</a>*/ ?>
+    <?php /*<span>경농</br><span>152</span><a>%</a></span>*/ ?>
+    <?php /*</td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<!--	월간 계좌 수익률 TOP 2위-->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td><span>2</span><h6>trader J</h6></td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<!--	주간 계좌 수익률 TOP 2위-->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td><span>2</span><h6>trader J</h6></td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*</tr>*/ ?>
+    <?php /*<tr class="rank-tb-body-03">*/ ?>
+    <?php /*<!--    최고종목 수익률 3위 -->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td>*/ ?>
+    <?php /*<a href="/stores/irene">*/ ?>
+    <?php /*<img src="<?php echo e(config_item('image_url')); ?>content/rank/img_bronze.png">*/ ?>
+    <?php /*<img src="<?php echo e(config_item('image_url')); ?>content/rank/flower-road.png">*/ ?>
+    <?php /*</a>*/ ?>
+    <?php /*<a href="/stores/flower-road">꽃길</a>*/ ?>
+    <?php /*<span>이엠코리아</br><span>150</span><a>%</a></span>*/ ?>
+    <?php /*</td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<!--	월간 계좌 수익률 TOP 3위-->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td><span>3</span><h6>꽃길</h6></td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<!--	주간 계좌 수익률 TOP 3위-->*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*<td><span>3</span><h6>꽃길</h6></td>*/ ?>
+    <?php /*<td></td>*/ ?>
+    <?php /*</tr>*/ ?>
+    <?php /*</table>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+    <!-- 최고 종목 수익률 -->
+
+    <?php /*<!-- 포착종목 new -->*/ ?>
+    <?php /*<div class="main-catch-event-wrap wid-size-div w33 part-pd-15 mob-pd-x">*/ ?>
+    <?php /*<div class="divi-box">*/ ?>
+    <?php /*<div class="shadowbox hei-catch gradation-box">*/ ?>
+    <?php /*<div class="catch-event-list-box">*/ ?>
+    <?php /*<h2 class="main-hd gra-bg-txt">전문가 포착종목</h2>*/ ?>
+    <?php /*<div class="reset-time" id="reset-time-01">*/ ?>
+    <?php /*<span class="day">2018-08-31</span><br>*/ ?>
+    <?php /*<span class="time">14:32:11</span>*/ ?>
+    <?php /*<i class="reset-ico spinimage"></i>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*<div class="list-tt">*/ ?>
+    <?php /*<strong class="left-tt">종목</strong>*/ ?>
+    <?php /*<strong class="right-tt">신호종류</strong>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*<ul class="catch-ev-ul" id="signalbox01"></ul>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*<div class="divi-box">*/ ?>
+    <?php /*<div class="shadowbox hei-catch">*/ ?>
+    <?php /*<div class="catch-event-list-box center-con">*/ ?>
+    <?php /*<h2 class="main-hd center">포착종목 종합</h2>*/ ?>
+    <?php /*<div class="list-tt">*/ ?>
+    <?php /*<strong class="left-tt">종목(신호)</strong>*/ ?>
+    <?php /*<strong class="right-tt">현재수익률(예측정확도)</strong>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*<ul class="catch-ev-ul" id="signalbox02"></ul>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*<div class="divi-box">*/ ?>
+    <?php /*<div class="shadowbox hei-catch gradation-box">*/ ?>
+    <?php /*<div class="catch-event-list-box">*/ ?>
+    <?php /*<h2 class="main-hd gra-bg-txt">인공지능 포착종목</h2>*/ ?>
+    <?php /*<div class="reset-time" id="reset-time-02"></div>*/ ?>
+    <?php /*<div class="list-tt">*/ ?>
+    <?php /*<strong class="left-tt">종목</strong>*/ ?>
+    <?php /*<strong class="right-tt">신호종류</strong>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*<ul class="catch-ev-ul" id="signalbox03">*/ ?>
+    <?php /*</ul>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+    <?php /*<!-- //포착종목 new -->*/ ?>
+
+    <!-- itbc-main-row-banner-04-wrap -->
+        <div class="itbc-main-row-banner-wrap banner04">
+            <ul>
+                <li>
+                    <div class="div-box">
+                        <div class="jisu-box jisu-box-01">
+                            <div class="shadowbox">
+                                <div class="main-tab-menu-wrap">
+                                        <h2 class="main-hd">오늘의 증시</h2>
+                                        <div class="kospi-box">
+                                            <ul>
+                                                <div id="container" style="display:flex;">
+                                                    <div style="flex:1">코스피</div>
+                                                    <?php foreach(array_slice($kospi_kosdaq_korea, 3, 4) as $v): ?>
+                                                        <div style="flex:1;"><span><?php echo e($v->jisu); ?></span></div>
+                                                        <div style="flex:0.5;"><span><?php echo e($v->change); ?></span></div>
+                                                        <div style="flex:0.5;"><span><?php echo e($v->diff); ?>%</span></div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                        <div id="chartdiv" class="chartdiv"></div>
+                                        <div class="chart-box">
+                                            <table>
+                                                <tr>
+                                                    <th>상한가</th><td>상승</td><td>보합</td><td>하락</td><td>하한가</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>2</th><th>2</th><th>2</th><th>2</th><th>2</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="divi-box">
+                        <div class="jisu-box jisu-box-02">
+                            <div class="shadowbox">
+                                <h2 class="main-hd">업종상위</h2>
+                                <div class="notic-list-type-box02">
+                                    <?php foreach($top_count as $v): ?>
+                                        <ul>
+                                            <span><?php echo e($v->name); ?></span>
+                                            <span class="avg_ratio"><?php echo e($v->avg_ratio); ?>%</span>
+                                            <?php foreach(array_slice($v->list, 0, 2) as $v2): ?>
+                                                <li>
+                                                    <span><?php echo e($v2->name); ?></span>
+                                                    <span><?php echo e($v2->ratio); ?>%</span>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <?php /*<li><a href="https://play.google.com/store/apps/details?id=com.sbcn.new_premium" target="_blank"><img src="<?php echo e(config_item('image_url')); ?>itbc-main/img_main_app.png" alt="모바일앱"></a></li>*/ ?>
+                <?php /*<li><a href="/stores/ai-1008"><img src="<?php echo e(config_item('image_url')); ?>itbc-main/img_main_alphaon.png" alt="인공지능 알파온"></a></li>*/ ?>
+                <li>
+                    <div class="divi-box">
+                        <div class="jisu-box jisu-box-03">
+                            <div class="shadowbox">
+                                <h2 class="main-hd">해외증시</h2>
+                                <div class="notic-list-type-box03">
+                                    <?php foreach($kospi_kosdaq_global as $v): ?>
+                                        <ul>
+                                            <div id="container" style="display:flex;">
+                                                <div style="flex:2;"><span><?php echo e($v->korea_name); ?>(<?php echo e($v->date); ?>)</span></div>
+                                                <div style="flex:1;"><span><?php echo e($v->jisu); ?></span></div>
+                                                <div style="flex:1;">
+                                                    <?php if( $v->change < 0 ): ?>
+                                                        <?php $change = substr($v->change, 1); $d = "▼"; ?>
+                                                        <span style="color:blue"><?php echo $d, $change ?></span>
+                                                    <?php else: ?>
+                                                        <?php $change = $v->change; $u = "▲"; ?>
+                                                        <span style="color:red;"><?php echo $u, $change?></span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- //itbc-main-row-banner-04-wrap -->
+
+
+
+    </div>
+
+    <div class="main-row-center-banner">
+        <a href="http://www.itbc.news/" target="_blank"><img src="<?php echo e(config_item('image_url')); ?>tudal-main/main_row_center_banner_01.png" alt=""></a>
+    </div>
+
+    <!-- itbc-main-row-banner-wrap -->
+    <div class="purple-bg">
+        <div class="center-size-1140">
+            <div class="itbc-main-row-banner-wrap">
+                <ul>
+                    <li><a href="http://www.itbc.news/" target="_blank"><img src="<?php echo e(config_item('image_url')); ?>tudal-main/main_row_banner_01.png" alt=""></a></li>
+                    <li><a href="http://www.wstv.asia/" target="_blank"><img src="<?php echo e(config_item('image_url')); ?>tudal-main/main_row_banner_02.png" alt=""></a></li>
+                    <li><a href="https://alphaon.fabot.ai/#itbcstock" target="_blank"><img src="<?php echo e(config_item('image_url')); ?>tudal-main/main_row_banner_03.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- //itbc-main-row-banner-wrap -->
+
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

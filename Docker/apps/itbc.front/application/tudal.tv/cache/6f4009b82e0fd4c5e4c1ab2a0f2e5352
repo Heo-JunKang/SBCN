@@ -1,0 +1,200 @@
+<script type="text/javascript">
+    var signin  = {
+        after_submit   : function(json) {
+            if(premium.check_validation(json)) {
+                var query_str = get_query_str('refferer');
+                console.log(query_str);
+                if(JSON.stringify(query_str) != '{}'){
+                    location.href = '/'+query_str ;
+                }else{
+                    location.reload();
+                }
+            }
+        }
+    }
+
+    var signout = {
+        after_submit   : function(json) {
+            if(premium.check_validation(json)) {
+                location.reload();
+            }
+        },
+        after_submit_go_main    : function(json){
+            if(premium.check_validation(json)) {
+                location.href = '/';
+            }
+        }
+    }
+</script>
+
+<!-- top-banner-wrap -->
+<div class="top-banner-wrap">
+    <div class="center-size-1140">
+        <a href="#none" class="ban-img"><img src="<?php echo e(config_item('image_url')); ?>itbc-main/img_main_banner_top_1.png" alt=""></a>
+        <a href="javascript:void(0)" class="top-banner-close-btn"><span class="blind">닫기</span></a>
+    </div>
+</div>
+
+<!-- header -->
+<div id="header">
+    <div class="header-in">
+        <div class="login-wrap">
+            <div class="center-size-1140">
+                <div class="top-inforbar-txt">
+                    <ul>
+                        <li>
+                            <span>고객센터</span>
+                            <strong><em><?php echo e($site_config->phone_number->default); ?></em></strong>
+                        </li>
+                        <li>
+                            <span>계좌안내</span>
+                            <strong><?php echo e($site_config->bank_name); ?> <em><?php echo e($site_config->bank_number); ?></em> <?php echo e($site_config->company_name); ?></strong>
+                        </li>
+                    </ul>
+                </div>
+                <div class="login-write-box">
+                    <div class="icon-link">
+                        <a href="http://blog.naver.com/itbcstock" target="_blank"><img src="<?php echo e(config_item('image_url')); ?>itbc-main/ic_main_sns_blog.png" alt=""></a>
+                        <a href="http://www.facebook.com/itbcstock " target="_blank"><img src="<?php echo e(config_item('image_url')); ?>itbc-main/ic_main_sns_facebook.png" alt=""></a>
+                    <!-- <a href="#none"><img src="<?php echo e(config_item('image_url')); ?>header/ic_main_sns_instagram.png" alt=""></a> -->
+                    </div>
+                    <?php if(is_login()): ?>
+                        <div class="login-btn"><button type="button" onclick="location.href='<?php echo e(config_item('account_url')); ?>myaccount-service'" class="main-btn smal red-c">계정정보</button></div>
+                        <div class="join-btn"><a href="<?php echo e(config_item('account_url')); ?>signout" class="main-btn smal gray-c">로그아웃</a></div>
+                    <?php else: ?>
+                        <div class="login-btn"><button type="button" onclick="location.href='<?php echo e(config_item('account_url')); ?>signin'" class="main-btn smal red-c">로그인</button></div>
+                        <div class="join-btn"><a href="<?php echo e(config_item('account_url')); ?>signup" class="main-btn smal gray-c">회원가입</a></div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="lnb-wrap"><!-- menu_on -->
+            <div class="lnb-inner">
+                <h1 class="logo"><a href="/main"><img src="<?php echo e(config_item('image_url')); ?>itbc-main/logo.png" alt="itbcstock"></a></h1>
+                <a href="javascript:void(0)" class="lnb-open-btn">
+                    <div class="lnb-menu-stick">
+                        <div class="menu-bar bar01"></div>
+                        <div class="menu-bar bar02"></div>
+                        <div class="menu-bar bar03"></div>
+                    </div>
+                    <span class="blind">메뉴</span>
+                </a>
+                <?php if(is_login()): ?>
+                    <a href="<?php echo e(config_item('account_url')); ?>myaccount-service" class="mobile-login-btn"><span class="blind">로그인</span></a>
+                <?php else: ?>
+                    <a href="<?php echo e(config_item('account_url')); ?>signin" class="mobile-login-btn"><span class="blind">로그인</span></a>
+                <?php endif; ?>
+                <div class="lnb-area">
+                    <nav class="lnb">
+                        <div class="lnb-in customer-sc-wrap">
+                            <ul class="dep-ul">
+
+                                <li class="dep-li <?php echo e(convert_value(@$uri[2],'story','active')); ?>">
+                                    <a href="/about/story" class="dep-a">회사소개</a>
+                                    <div class="small-dep-box">
+                                        <div class="small-dep-in">
+                                            <strong class="lnb-sub-tt">회사소개</strong>
+                                            <div class="lnb-sub-menu">
+                                                <ul>
+                                                    <li><a href="about/story">회사소개</a></li>
+                                                </ul>
+                                            </div>
+                                            <?php /*<div class="lnb-sub-img"><a href="#none"><img src="../../source_dev/images/itbc-main/img_main_banner_gnb.png" alt=""></a></div>*/ ?>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <?php if(!is_login()): ?>
+                                <li class="dep-li <?php echo e(convert_value(@$uri[1],'experience','active')); ?>">
+                                    <a href="/experience" class="dep-a">체험신청</a>
+                                    <div class="small-dep-box">
+                                        <div class="small-dep-in">
+                                            <strong class="lnb-sub-tt">체험신청</strong>
+                                            <div class="lnb-sub-menu">
+                                                <ul>
+                                                    <li><a href="/experience">체험신청</a></li>
+                                                </ul>
+                                            </div>
+                                            <?php /*<div class="lnb-sub-img"><a href="#none"><img src="" alt="" width="263" height="136"></a></div>*/ ?>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php endif; ?>
+                                <li class="dep-li <?php echo e(convert_value(@$uri[1].@$uri[2],'guide','active')); ?>">
+                                    <a href="/guide" class="dep-a">이용가이드</a>
+                                    <div class="small-dep-box">
+                                        <div class="small-dep-in">
+                                            <strong class="lnb-sub-tt">이용가이드</strong>
+                                            <div class="lnb-sub-menu">
+                                                <ul>
+                                                    <li><a href="/guide">이용가이드</a></li>
+                                                </ul>
+                                            </div>
+                                            <?php /*<div class="lnb-sub-img"><a href="#none"><img src="" alt="" width="263" height="136"></a></div>*/ ?>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php /*<li class="dep-li <?php echo e(convert_value(@$uri[1],'invest','active')); ?>">*/ ?>
+                                    <?php /*<a href="/invest/main-news" class="dep-a">투자정보</a>*/ ?>
+                                    <?php /*<div class="small-dep-box">*/ ?>
+                                        <?php /*<div class="small-dep-in">*/ ?>
+                                            <?php /*<strong class="lnb-sub-tt">투자정보</strong>*/ ?>
+                                            <?php /*<div class="lnb-sub-menu">*/ ?>
+                                                <?php /*<ul>*/ ?>
+                                                    <?php /*<li><a href="/invest/main-news">주요뉴스</a></li>*/ ?>
+                                                <?php /*</ul>*/ ?>
+                                            <?php /*</div>*/ ?>
+                                            <?php /*<div class="lnb-sub-img"><a href="#none"><img src="" alt="" width="263" height="136"></a></div>*/ ?>
+                                        <?php /*</div>*/ ?>
+                                    <?php /*</div>*/ ?>
+                                <?php /*</li>*/ ?>
+                                <li class="dep-li <?php echo e(convert_value(@$uri[1],'customer','active')); ?>">
+                                    <a href="/customer/notice" class="dep-a">고객센터</a>
+                                    <div class="small-dep-box">
+                                        <div class="small-dep-in">
+                                            <strong class="lnb-sub-tt">고객센터</strong>
+                                            <div class="lnb-sub-menu">
+                                                <ul>
+                                                    <li><a href="/customer/notice">공지사항</a></li>
+                                                    <li><a href="/customer/faq">자주하는 질문</a></li>
+                                                </ul>
+                                            </div>
+                                            <?php /*<div class="lnb-sub-img"><a href="#none"><img src="" alt="" width="263" height="136"></a></div>*/ ?>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <?php if(is_login()): ?>
+
+                                <li class="dep-li mobi-ligin-menu">
+                                    <a href="#none" class="dep-a">마이페이지</a>
+                                    <div class="small-dep-box">
+                                        <div class="small-dep-in">
+                                            <strong class="lnb-sub-tt">마이페이지</strong>
+                                            <div class="lnb-sub-menu">
+                                                <ul>
+                                                    <li><a href="<?php echo e(config_item('account_url')); ?>myaccount-service">나의서비스</a></li>
+                                                    <li><a href="<?php echo e(config_item('account_url')); ?>signout">로그아웃</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="lnb-sub-img"><a href="#none"><img src="" alt="" width="263" height="136"></a></div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+                        <a href="javascript:void(0)" class="lnb-close-btn"><span>메뉴닫기</span></a>
+                    </nav>
+                </div>
+                <div class="lnb-area2" style="float:right;padding-left: 0px;">
+                    <h1 class="logo"><a href="/main"><img style="width:429px;" src="<?php echo e(config_item('image_url')); ?>itbc-main/Affiliates.png" alt="itbcstock"></a></h1>
+                </div>
+                <div class="lnb-dim"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //header -->

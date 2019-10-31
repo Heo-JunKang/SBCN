@@ -1,0 +1,23 @@
+.more-btn-box{
+	text-align:center;
+	margin-top:30px;
+	@include mq($mobile) {
+		margin-top:20px;
+	}
+	@include mq($tablet) {
+		margin-top:30px;
+	}
+	.btn{
+		width:200px;
+		.arrow-mark{
+			vertical-align:middle;
+			margin-left:10px;
+			display:inline-block;
+			transform:rotate(0deg);
+			width:12px;
+			height:7.4px;
+			background:url($img + 'itbc/arrow_drop_down_24_16.png') 0 0 no-repeat;
+			background-size:12px 7.4px;
+		}
+	}
+}

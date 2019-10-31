@@ -1,0 +1,111 @@
+.first-visit-guide{
+	@include mq($mobile) {
+		padding:6px 0;
+	}
+	.shadowbox{
+		height:180px;
+		@include box-sizing;
+		@include mq($mobile) {
+			height:auto;
+		}
+	}
+	.main-hd{
+		//
+	}
+	ul{
+		@include cf;
+		padding-left:224px;
+		margin-top: -25px;
+		@include mq($mobile) {
+			padding:0;
+			text-align: center;
+			width:280px;
+			margin: 30px auto 0;
+		}
+		@include mq($tablet) {
+			width:auto;
+		}
+		li{
+			position: relative;
+			float:left;
+			padding-left:102px;
+			padding-top: 25px;
+			margin: 0 23px;
+			@include mq($mobile) {
+				@include box-sizing;
+				height:89px;
+				float:none;
+				margin:0;
+				margin-bottom:30px;
+				&:last-child{
+					margin-bottom:0;
+				}
+			}
+			@include mq($tablet) {
+				float:left;
+				width:33.3333333%;
+				text-align:center;
+				margin-bottom:0;
+				height:auto;
+				padding-left:0;
+				padding-bottom:30px;
+			}
+			.guide-in-box{
+				position:static;
+				@include mq($mobile) {
+					position:static;
+				}
+				@include mq($tablet) {
+					position: relative;
+					display:inline-block;
+					margin-left:90px;
+				}
+			}
+			.bg-ico{
+				position:absolute;
+				top:0;
+				left:0;
+				// @include mq($mobile) {
+				// 	top:0;
+				// 	left:0;
+				// }
+				@include mq($tablet) {
+					top: -27px;
+					left: -101px;
+				}
+			}
+			p{
+				font-size:18px;
+				font-weight:700;
+				color:#c72b32;
+				@include mq($mobile) {
+					text-align:left;
+				}
+			}
+			a{
+				text-decoration: underline;
+				@include mq($mobile) {
+					display:block;
+					text-align:left;
+				}
+			}
+		}
+	}
+	.bg-ico{
+		display:inline-block;
+		width:89px;
+		height:89px;
+		&.ico-01{
+			background:url($img + 'content/img_main_guide_1.png') 0 0 no-repeat;
+			background-size: 89px auto;
+		}
+		&.ico-02{
+			background:url($img + 'content/img_main_guide_2.png') 0 0 no-repeat;
+			background-size: 89px auto;
+		}
+		&.ico-03{
+			background:url($img + 'content/img_main_guide_3.png') 0 0 no-repeat;
+			background-size: 89px auto;
+		}
+	}
+}

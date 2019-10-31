@@ -1,0 +1,40 @@
+/* itbc main youtube */
+.itbc-main-youtube-list-wrap{
+	max-width: 1140px;
+	margin:0 auto;
+	@include mq($mobile) {
+		padding:0 15px;
+	}
+	ul{
+		@include cf;
+		margin:0 -12px;
+		li{
+			@include box-sizing;
+			width:50%;
+			float:left;
+			padding:0 12px;
+			@include mq($mobile) {
+				width:100%;
+				margin-bottom:15px;
+				&:last-child{
+					margin-bottom:0;
+				}
+			}
+			@include mq($tablet) {
+				width:50%;
+			}
+		}
+	}
+	.youtube-box{
+		position:relative;
+		width:100%;
+		padding-top:56.3%;
+		iframe{
+			position: absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+		}
+	}
+}

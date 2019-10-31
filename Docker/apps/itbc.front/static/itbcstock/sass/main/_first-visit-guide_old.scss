@@ -1,0 +1,48 @@
+.first-visit-guide{
+	.shadowbox{
+		height:180px;
+		@include box-sizing;
+	}
+	.main-hd{
+		//
+	}
+	ul{
+		@include cf;
+		padding-left:224px;
+		margin-top: -25px;
+		li{
+			position: relative;
+			float:left;
+			padding-left:102px;
+			padding-top: 25px;
+			margin: 0 23px;
+			.bg-ico{
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			p{
+				font-size:18px;
+				font-weight:700px;
+				color:#c72b32;
+			}
+			a{
+				text-decoration: underline;
+			}
+		}
+	}
+	.bg-ico{
+		display:inline-block;
+		width:89px;
+		height:89px;
+		&.ico-01{
+			background:url($img + 'content/img_main_guide_1.png') 0 0 no-repeat;
+		}
+		&.ico-02{
+			background:url($img + 'content/img_main_guide_2.png') 0 0 no-repeat;
+		}
+		&.ico-03{
+			background:url($img + 'content/img_main_guide_3.png') 0 0 no-repeat;
+		}
+	}
+}

@@ -1,0 +1,402 @@
+// 이용가이드 > 모바일앱
+.guide-mobile-pg{
+	.nth-part-color-wrap{
+		&.mobile-change{
+			.left-contents{
+				@include mq($mobile) {
+					padding-top:31%;
+				}
+				@include mq($tablet) {
+					padding-top:0;
+				}
+				.con-img{
+					top:auto;
+					bottom:0;
+					@include mq($tablet) {
+						bottom:-30px;
+					}
+				}
+			}
+			.right-contents{
+				.con-txt-table{
+					.con-txt-cell{
+						padding-top:104px;
+						@include mq($mobile) {
+							padding-top:0;
+						}
+						@include mq($tablet) {
+							padding-top:70px;
+						}
+					}
+				}
+			}
+			// .premium-icon{
+			// 	@include mq($mobile) {
+			// 		position:absolute;
+			// 		top:-333px;
+			// 		left:0;
+			// 		right:0;
+			// 		margin:0 auto;
+			// 		width:80px;
+			// 		height:80px;
+			// 	}
+			// }
+		}
+	}
+
+	.premium-icon{
+		position:absolute;
+		top:138px;
+		left:565px;
+		display:block;
+		width:104px;
+		height:104px;
+		background:url($img + 'sub/img_app_icon.png') 0 0 no-repeat;
+		background-size:100%;
+		margin-bottom:20px;
+		@include mq($mobile) {
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			margin:0 auto;
+			width:30%;
+			height:25%;
+		}
+		@include mq($tablet) {
+			margin-bottom:10px;
+			width:70px;
+			height:70px;
+			top:25px;
+			left:313px;
+			margin-bottom:0;
+		}
+	}
+}
+
+// 이용가이드 > VIP서비스
+.guide-vip-pg{
+	.nth-part-color-wrap{
+		&.sms-tab-height{
+			@include mq($mobile) {
+				height:auto;
+			}
+			.left-contents{
+				//
+			}
+			.right-contents{
+				@include mq($tablet) {
+					height:100%;
+					position:absolute;
+					top:0;
+					left:0;
+					padding-left:350px;
+				}
+			}
+		}
+	}
+
+	.sms-tab-box{
+		.tab-in{
+			padding-top:36px;
+			@include mq($mobile) {
+				padding-top:0;
+			}
+		}
+		.main-tab-menu-wrap{
+			width:333px;
+			margin:0 auto;
+			@include mq($mobile) {
+				width:100%;
+			}
+			.tab-menu-bt-zone{
+				width:258px;
+				margin:0 auto;
+				@include mq($mobile) {
+					width:100%;
+					margin:0 auto;
+					display:table;
+				}
+				.menu-txt{
+					@include mq($mobile) {
+						width:50%;
+					}
+				}
+			}
+			.tab-menu-con-wrap{
+				position:relative;
+				margin-top:21px;
+				height:470px;
+				@include mq($mobile) {
+					height:auto;
+				}
+				@include box-sizing;
+				background-color:#e5e5ea;
+				@include border-radius($border-radius : 15px);
+				&:after{
+					content:"";
+					display:block;
+					position:absolute;
+					bottom:0;
+					left:-12px;
+					width:53px;
+					height:40px;
+					background:url($img + 'icon/bubble_mark.png') 0 0 no-repeat;
+					z-index:0;
+				}
+
+				.con-box{
+					@include box-sizing;
+					height:100%;
+					padding:20px;
+					position: relative;
+					z-index: 1;
+					.in-scr{
+						height:100%;
+						overflow:hidden;
+						overflow-y:auto;
+						font-size:14px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.app-dw-btn-box{
+	padding-top:20px;
+	margin:0 -5px;
+	@include mq($mobile) {
+		font-size:0;
+	}
+	.app-dw-btnzone{
+		display:inline-block;
+		padding:0 5px;
+		@include mq($mobile) {
+			@include box-sizing;
+			width:50%;
+		}
+		a{
+			text-align:center;
+			display:block;
+			font-size:16px;
+			font-weight:600;
+			// color:#000;
+			// background-color:#f1f3f4;
+			width:155px;
+			height:40px;
+			line-height:38px;
+			@include border-radius($border-radius : 20px);
+			@include mq($mobile) {
+				width:100%;
+			}
+		}
+		.icon, .nm{
+			display:inline-block;
+			// vertical-align:middle;
+		}
+		.icon{
+			width:22px;
+			height:22px;
+			background-position:0 0;
+			background-repeat:no-repeat;
+			margin-right:4px;
+			vertical-align: middle;
+			margin-top:-3px;
+			@include mq($mobile) {
+				//
+			}
+			&.gp{
+				background-image:url($img + 'sub/ic_googleplay.png');
+				background-size:22px;
+			}
+			&.as{
+				background-image:url($img + 'sub/ic_appstore.png');
+				background-size:22px;
+			}
+		}
+		.nm{
+			//
+		}
+	}
+	&.alone-btn{
+		.app-dw-btnzone{
+			a{
+				width:320px;
+			}
+		}
+	}
+
+	&.app{
+		.app-dw-btnzone{
+			a{
+				color:#000;
+			    background-color: #f1f3f4;
+			    border:0;
+			}
+		}
+	}
+}
+
+// 이용가이드 > 플러스친구
+.guide-pluskakao-pg{
+	.gray-color-box{
+		padding:30px 0;
+		@include mq($mobile) {
+			padding:30px 20px;
+		}
+	}
+	.kakao-pg-banner-zone{
+		@include cf;
+		.kakao-big-ban{
+			float:left;
+			margin-right:20px;
+			@include mq($mobile) {
+				position:relative;
+				float:none;
+				overflow:hidden;
+				padding-top:55.72916666%;
+				margin-right:0;
+				margin-bottom:10px;
+			}
+
+			iframe{
+				width:760px;
+				height:428px;
+				@include mq($mobile) {
+					width:100%;
+					height:100%;
+					position:absolute;
+					top:0;
+					left:0;
+				}
+			}
+			img{
+				//
+			}
+		}
+		.kakao-friend-guide{
+			position: relative;
+			float:left;
+			text-align:center;
+			background-color:#fff;
+			width:360px;
+			height:428px;
+			@include mq($mobile) {
+				width:100%;
+				height:200px;
+			}
+			.kakaofriend-mark{
+				position: absolute;
+				top:20px;
+				left:20px;
+				display:block;
+				width:117px;
+				height:59px;
+				background:url($img + 'sub/img_plusfriend_logo.png') 0 0 no-repeat;
+				background-size:117px 59px;
+			}
+			p{
+				margin-top:169px;
+				font-size:30px;
+				font-weight:700;
+				color:#3d2600;
+				line-height: 1.5;
+				@include mq($mobile) {
+					font-size:22px;
+					margin-top:80px;
+				}
+				br{
+					// @include mq($mobile) {
+					// 	display:none;
+					// }
+					@include mq($tablet) {
+						display:none;
+					}
+				}
+			}
+			span{
+				position:absolute;
+				bottom:20px;
+				left:0;
+				width:100%;
+				display:block;
+				font-size:16px;
+				color:#3d2600;
+			}
+		}
+	}
+
+	.kakao-plus-part-guide{
+		padding:30px 0;
+		@include mq($mobile) {
+			padding:0;
+		}
+		.kakao-gu-title{
+			font-size:30px;
+			font-weight:700;
+			color:#000;
+			@include mq($mobile) {
+				font-size:28px;
+			}
+		}
+		ol{
+			@include cf;
+			margin:0 -15px;
+			margin-top:30px;
+			@include mq($mobile) {
+				margin:0;
+				margin-top:15px;
+			}
+			@include mq($tablet) {
+				margin:0 -15px;
+				margin-top:30px;
+			}
+			li{
+				float:left;
+				width:33.33333%;
+				@include box-sizing;
+				padding:0 15px;
+				@include mq($mobile) {
+					width:100%;
+					float:none;
+					padding:0;
+					margin-bottom:30px;
+					&:last-child{
+						margin-bottom:0;
+					}
+				}
+				@include mq($tablet) {
+					float:left;
+					width:33.33333%;
+					padding:0 15px;
+					margin-bottom:30px;
+					&:last-child{
+						margin-bottom:0;
+					}
+				}
+				.kakao-in-box{
+					//
+				}
+				.txt{
+					font-size:16px;
+					color:#000;
+					span.red{
+						color:#c82122;
+					}
+					br{
+						@include mq($mobile) {
+							display:none;
+						}
+					}
+				}
+				.img{
+					margin-top:12px;
+					img{
+						width:100%;
+					}
+				}
+			}
+		}
+	}
+}

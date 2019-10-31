@@ -1,0 +1,162 @@
+/* itbc main */
+.itbc-main-professional-wrap{
+	overflow:hidden;
+	padding:15px 0;
+	@include mq($mobile) {
+		padding:15px;
+	}
+	.itbc-main-professional-list{
+		@include cf;
+		margin:-15px;
+		@include mq($mobile) {
+			margin:-15px;
+		}
+		.professional-li{
+			@include box-sizing;
+			float:left;
+			width:33.3333%;
+			padding:15px;
+			@include mq($mobile) {
+				width:100%;
+			}
+			@include mq($tablet) {
+				width:50%;
+			}
+			&.coming-soon{
+				.professional-banner-box{
+					.coming-soon-ab{
+						display:flex;
+					}
+				}
+			}
+		}
+		.professional-banner-box{
+			position: relative;
+			border:1px solid #dddfe2;
+			@include box-sizing;
+			// height:240px;
+			background-color:#fafafa;
+			.professional-ban-img{
+				// height:202px;
+				img{
+					width:100%;
+				}
+			}
+			.professional-ban-guide{
+				position:relative;
+				// padding:18px;
+				// height:202px;
+				@include box-sizing;
+				background-repeat: no-repeat;
+				background-position: right bottom;
+				.pic{
+					width:100%;
+				}
+				.air{
+					position:absolute;
+					top:7%;
+					left:6%;
+					width:60px;
+					height:26px;
+					@include mq($mobile) {
+						width:20%;
+						height:auto;
+					}
+					// @include border-radius($border-radius : 15px);
+					// display:inline-block;
+					// background-color:#4a90e2;
+					// height:26px;
+					// line-height:26px;
+					// color:#fafafa;
+					// font-size:13px;
+					// font-weight:600;
+					// padding: 0 10px;
+					img{
+						width:100%;
+					}
+					&.on{
+						background-color:#d73838;
+					}
+				}
+				.detail-btn-bt{
+					position:absolute;
+					bottom:6%;
+					left:6%;
+					@include cf;
+					font-size:0;
+					@include mq($mobile) {
+						width:45%;
+					}
+					a{
+						float:left;
+						display:block;
+						padding-right:5px;
+						width:69px;
+						height:24px;
+						@include box-sizing;
+						@include mq($mobile) {
+							width:50%;
+							height:auto;
+						}
+						img{
+							width:100%;
+						}
+					}
+				}
+				// .professional-con{
+				// 	padding-top:80px;
+				// 	em{
+				// 		font-style:normal;
+				// 		font-size:15px;
+				// 	}
+				// 	p{
+				// 		margin-top:10px;
+				// 		font-size:13px;
+				// 	}
+				// }
+			}
+			.professional-ban-btn{
+				@include cf;
+				a{
+					float:left;
+					display:block;
+					height:36px;
+					line-height:36px;
+					width:50%;
+					color:#fff;
+					font-size:12px;
+					text-align: center;
+					&.black{
+						background-color: #24252c;
+					}
+					&.red{
+						background-color: #d0021b;
+					}
+				}
+			}
+			.coming-soon-ab{
+				display:none;
+				position:absolute;
+				top:0;
+				left:0;
+				right:0;
+				bottom:0;
+				background-color:rgba(0, 0, 0, 0.88);
+				font-size:26px;
+				font-weight:700;
+				color:#fff;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+
+}
+
+.itbc-main-hr{
+	display:block;
+	border:0;
+	border-top:1px solid #9b9b9b;
+	margin-top:15px;
+	margin-bottom:0;
+}

@@ -1,0 +1,204 @@
+/* itbc air list */
+.itbc-main-air-list-wrap{
+	max-width:1140px;
+	margin:0 auto;
+	@include cf;
+	@include mq($mobile) {
+		padding:0 15px;
+	}
+	.youtube-main{
+		width:789px;
+		height:445px;
+		float:left;
+		@include mq($mobile) {
+			float:none;
+			width:auto;
+			height:auto;
+		}
+		.youtube-main-in{
+			position:relative;
+			width:100%;
+			padding-top:56.3%;
+			iframe{
+				position: absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+			}
+		}
+	}
+
+	.organizational-main{
+		position: relative;
+		width:328px;
+		float:right;
+		@include mq($mobile) {
+			float:none;
+			width:auto;
+		    margin-top: 20px;
+		}
+		.org-tt{
+			position: relative;
+			font-size:18px;
+			font-weight:700;
+			color:#333;
+			padding:13px 10px;
+			border-bottom:1px solid #dcdbdc;
+			span{
+				font-size:14px;
+				font-weight:600;
+				color:#636363;
+				margin-left:6px;
+			}
+			&:before{
+				position: absolute;
+				top:0;
+				left:0;
+				content:"";
+				display:block;
+				width:100%;
+				height:2px;
+				background: #37529d; /* Old browsers */
+				background: -moz-linear-gradient(left, #37529d 0%, #85c3bb 100%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(left, #37529d 0%,#85c3bb 100%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to right, #37529d 0%,#85c3bb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#37529d', endColorstr='#85c3bb',GradientType=1 ); /* IE6-9 */
+			}
+		}
+		.all-see-ab{
+			position:absolute;
+			top:17px;
+			right:10px;
+			font-size:12px;
+			color:#636363;
+			.arrow-mark{
+				display:inline-block;
+				background:url($img + 'itbc/arrow_right_small.png') 0 0 no-repeat;
+				width:5px;
+				height:9px;
+				background-size:5px 9px;
+				margin-left:6px;
+			}
+		}
+		.org-list{
+			ul{
+				li{
+					position:relative;
+					border-bottom:1px solid #dcdbdc;
+					a{
+						display:flex;
+						align-items: center;
+						height:98px;
+						pointer-events: none;
+						cursor: default;
+						@include mq($mobile) {
+							height:60px;
+						}
+					}
+					&.on{
+						a{
+							pointer-events: auto;
+							cursor: pointer;
+							background: #37529d; /* Old browsers */
+							background: -moz-linear-gradient(left, #37529d 0%, #85c3bb 100%); /* FF3.6-15 */
+							background: -webkit-linear-gradient(left, #37529d 0%,#85c3bb 100%); /* Chrome10-25,Safari5.1-6 */
+							background: linear-gradient(to right, #37529d 0%,#85c3bb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+							filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#37529d', endColorstr='#85c3bb',GradientType=1 ); /* IE6-9 */
+						}
+						.time-zone{
+							i{
+								//
+							}
+							span{
+								color:#fff;
+							}
+						}
+						.title-zone{
+							strong, span{
+								color:#fff;
+							}
+						}
+						.list-arrow-mark{
+							display:block;
+						}
+					}
+					&.before{
+						.time-zone{
+							i{
+								//
+							}
+							span{
+								color:#d3cfd5;
+							}
+						}
+						.title-zone{
+							strong, span{
+								color:#d3cfd5;
+							}
+						}
+					}
+				}
+			}
+			.time-zone{
+				padding:0 15px;
+				i{
+					//
+				}
+				span{
+					font-size:16px;
+					color:#636363;
+					@include mq($mobile) {
+						font-size:13px;
+					}
+					@include mq($tablet) {
+						font-size:16px;
+						br{
+							display:none;
+						}
+					}
+				}
+			}
+			.title-zone{
+				padding-left:48px;
+				strong, span{
+					display:block;
+					color:#333;
+					@include mq($mobile) {
+						display:inline-block;
+					}
+				}
+				strong{
+					font-size:21px;
+					font-weight:700;
+					@include mq($mobile) {
+						font-size:18px;
+					}
+				}
+				span{
+					font-size:16px;
+					font-weight:300;
+					@include mq($mobile) {
+						font-size:13px;
+						margin-left:5px;
+					}
+				}
+			}
+			.list-arrow-mark{
+				position:absolute;
+				top:37px;
+				right:30px;
+				width:12px;
+				height:23px;
+				background:url($img + 'itbc/arrow_right_big.png') 0 0 no-repeat;
+				background-size:12px 23px;
+				@include mq($mobile) {
+					top:20px;
+					width:9px;
+					height:20px;
+					background-size:9px 20px;
+				}
+			}
+		}
+	}
+}

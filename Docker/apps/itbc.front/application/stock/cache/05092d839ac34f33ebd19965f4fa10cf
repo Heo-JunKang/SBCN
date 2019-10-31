@@ -1,0 +1,29 @@
+<!-- side-quick-banner -->
+<div class="side-quick-banner-wrap">
+	<div class="side-quick-banner-in">
+		<ul class="fix-banner left">
+			<?php foreach($left->items as $v): ?>
+				<li><a href="<?php echo e($v->link); ?>" target="<?php echo e($v->target); ?>"><img src="<?php echo e($v->full_url); ?>" alt="<?php echo e($v->title1); ?>"></a></li>
+			<?php endforeach; ?>
+		</ul>
+		<ul class="fix-banner right">
+			<?php /*<li>*/ ?>
+				<?php /*<div class="m-side-banner-slide horislide-03 owl-carousel nav-bottom">*/ ?>
+					<?php /*<?php foreach($right->items as $v): ?>*/ ?>
+						<?php /*<?php if($v->rolling == "N"): ?>*/ ?>
+					<?php /*<div class="quick-slide item">*/ ?>
+						<?php /*<a href="<?php echo e($v->link); ?>" target="<?php echo e($v->target); ?>"><img src="<?php echo e($v->full_url); ?>" alt="<?php echo e($v->title1); ?>"></a>*/ ?>
+					<?php /*</div>*/ ?>
+						<?php /*<?php endif; ?>*/ ?>
+					<?php /*<?php endforeach; ?>*/ ?>
+				<?php /*</div>*/ ?>
+			<?php /*</li>*/ ?>
+			<?php foreach($right->items as $v): ?>
+				<?php if($v->rolling == "N"): ?>
+			<li><a href="<?php echo e($v->link); ?>" target="<?php echo e($v->target); ?>"><img src="<?php echo e($v->full_url); ?>" alt="<?php echo e($v->title1); ?>"></a></li>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+</div>
+<!-- //side-quick-banner -->

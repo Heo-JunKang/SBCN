@@ -1,0 +1,127 @@
+/* layer-popup */
+.layer-popup-wrap{
+	z-index: 10000;
+	position:absolute;
+	top:100px;
+	left:0;
+	right:0;
+	margin:0 auto;
+	width:555px;
+	-moz-box-shadow: 0px 1px 5px #000000;
+	-webkit-box-shadow: 0px 1px 5px #000000;
+	box-shadow: 0px 1px 20px rgba(0, 0, 0, 1);
+	img{
+		vertical-align:middle;
+	}
+	&.index-dw{
+		position: fixed;
+		z-index:10001;
+		width:1086px;
+		-moz-box-shadow:none;
+		-webkit-box-shadow:none;
+		box-shadow:none;
+	}
+	.img-zone{
+		img{
+			vertical-align: middle;
+		}
+		a{
+			display:block;
+		}
+	}
+	.popup-close-area{
+		position:relative;
+		height:30px;
+		@include box-sizing;
+		background-color: #4a4a4a;
+		.check-day{
+			position: absolute;
+			top:6px;
+			left:9px;
+			font-size:13px;
+			font-weight:500;
+			color:#fff;
+			input[type=checkbox]{
+				width:15px;
+				height:15px;
+				@include border-radius($border-radius : 0px);
+				-webkit-appearance: checkbox;
+				background-color:#fff;
+			}
+		}
+		.close-btn{
+			position: absolute;
+			top:0;
+			right:9px;
+			button{
+				font-size:13px;
+				font-weight:500;
+				color:#fff;
+				border:0;
+				background-color:transparent;
+				font-family:'Noto Sans', '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Helvetica, Arial, sans-serif;
+			}
+			.x-ico{
+				margin-left:5px;
+				margin-top:-2px;
+				vertical-align:middle;
+				display:inline-block;
+				width:14px;
+				height:14px;
+				background:url($img + 'pop/ic_close.png') 0 0 no-repeat;
+			}
+		}
+	}
+
+	.open-pop-zone{
+		position:relative;
+		.btn-area{
+			position:absolute;
+			bottom:26px;
+			left:0;
+			width:100%;
+			text-align: center;
+			a{
+				display:inline-block;
+				@include border-radius($border-radius : 38px);
+				font-size:31px;
+				color:#fff;
+				font-weight:700;
+				width:369px;
+				height:75px;
+				line-height:75px;
+				background-color:#c72b32;
+				text-decoration:none;
+			}
+		}
+		.close-area{
+			position:absolute;
+			bottom:50px;
+			right:100px;
+			width:38px;
+			height:36px;
+			button{
+				border:0;
+				background-color:transparent;
+				width:100%;
+				height:100%;
+				background:url($img + 'pop/ic_full_popup_close.png') 0 0 no-repeat;
+			}
+		}
+	}
+}
+
+.layer-popup-dim{
+	z-index:10000;
+	position:fixed;
+	top:0;
+	right:0;
+	width:100%;
+	height:100%;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+
+
+
+

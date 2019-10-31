@@ -1,0 +1,52 @@
+.notic-list-type-box{
+	ul{
+		margin-top:8px;
+		li{
+			position:relative;
+			margin-bottom:12px;
+			&:last-child{
+				margin-bottom:0;
+			}
+			a, span{
+				letter-spacing:0.3px;
+			}
+			a{
+				display:block;
+				font-size:16px;
+				color:#000;
+				padding-right:100px;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+			}
+			span{
+				position:absolute;
+				top:0;
+				right:0;
+				font-size:16px;
+				color:#9b9b9b;
+			}
+			.txt{
+				position: static;
+				display:block;
+				font-size:16px;
+				color:#000;
+				padding-right:100px;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+			}
+			.day{
+				color:#000;
+			}
+		}
+	}
+	.detail-pg-btn{
+		text-align:center;
+		margin-top:16px;
+		a{
+			font-size:13px;
+			color:#172349;
+		}
+	}
+}

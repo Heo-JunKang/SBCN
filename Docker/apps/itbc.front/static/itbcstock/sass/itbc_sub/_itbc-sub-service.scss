@@ -1,0 +1,266 @@
+/* itbc service */
+.itbc-sub-free-member-wrap{
+	padding-top:34px;
+	padding-bottom:90px;
+	@include mq($mobile) {
+		padding:15px 15px 60px;
+	}
+	@include mq($tablet) {
+		padding:30px 0 60px;
+	}
+}
+.vip-write-service-app{
+	width:570px;
+	margin:0 auto 0;
+	@include mq($mobile) {
+		width:auto;
+	}
+	@include mq($tablet) {
+		width:570px;
+	}
+	.vip-service-write{
+		margin-bottom:34px;
+		&:last-child{
+			margin-bottom:0;
+		}
+		@include mq($mobile) {
+			margin-top:30px;
+			&:first-child{
+				margin-top:0;
+			}
+		}
+		.vip-write-h3{
+			font-size: 34px;
+			font-weight: 300;
+			margin: 0 0 34px;
+			@include mq($mobile) {
+				font-size: 20px;
+				margin:0;
+				margin-bottom:10px;
+			}
+			@include mq($tablet) {
+				font-size: 25px;
+				margin:0;
+				margin-bottom:10px;
+			}
+		}
+		.write-area{
+			padding:5px 0;
+			&:first-child{
+				padding-top:0;
+			}
+			.tt{
+				font-size: 16px;
+				font-weight:500;
+				display: block;
+				margin-bottom: 12px;
+				color:#333;
+				.tt-sub-txt{
+					font-size: 13px;
+					color: #a49293;
+					font-weight: 500;
+					margin-left: 5px;
+				}
+			}
+			.form-box{
+				&.rig-btn{
+					position:relative;
+					.formcon-area{
+						padding-right:91px;
+					}
+					.btn{
+						position:absolute;
+						top:0;
+						right:0;
+						width:86px;
+					}
+				}
+			}
+			.mk-select{
+				select{
+					//
+				}
+				label{
+					//
+				}
+			}
+		}
+		.f-box-floating{
+			@include cf;
+			.write-area{
+				&:first-child{
+					float:left;
+					width:186px;
+					@include mq($mobile) {
+						width:100%;
+						float:none;
+					}
+					@include mq($tablet) {
+						float:left;
+						width:186px;
+					}
+				}
+				&:last-child{
+					float:right;
+					width:360px;
+					@include mq($mobile) {
+						width:auto;
+						float:none;
+						margin-top:20px;
+					}
+					@include mq($tablet) {
+						float:left;
+						margin-left:20px;
+						margin-top:0;
+						width:50%;
+					}
+
+					.mk-select{
+						position: relative;
+						display: inline-block;
+						min-width: 110px;
+						height: 40px;
+						line-height: 40px;
+						border-width: 1px;
+						border-style: solid;
+						border-color: #c1c1c1;
+						border-radius: 20px;
+						text-transform: uppercase;
+						background: #fff;
+						box-sizing: border-box;
+						@include mq($mobile) {
+							min-width:auto;
+							width:100%;
+						}
+						&:after{
+							position: absolute;
+							top: 17px;
+							right: 8px;
+							content: '';
+							display: block;
+							width: 0;
+							height: 0;
+							border-style: solid;
+							border-width: 5px;
+							border-color: transparent;
+							border-top: 5px solid #c1c1c1;
+						}
+						select{
+							cursor: pointer;
+							width: 100%;
+							height: 100%;
+							font-size: 16px;
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							-ms-appearance: none;
+							appearance: none;
+							border: 0;
+							padding: 0 15px;
+							opacity: 1;
+							background-color:transparent;
+						}
+					}
+				}
+			}
+
+			&.per50{
+				margin:0 -5px;
+				.write-area{
+					float:left;
+					width:50%;
+					@include box-sizing;
+					padding:0 5px;
+					@include mq($mobile) {
+						width:auto;
+						float:none;
+					}
+					@include mq($tablet) {
+						width:50%;
+						float:left;
+					}
+				}
+			}
+		}
+	}
+
+	.provision-check-zone{
+		.all-check{
+			margin-bottom:20px;
+			.mk-fromput{
+				label{
+					//
+				}
+			}
+		}
+		.list-check{
+			ul{
+				li{
+					margin-bottom:21px;
+					&:last-child{
+						margin-bottom:0;
+					}
+				}
+			}
+			.ck-link{
+				margin-bottom:13px;
+			}
+			.ck-con{
+				border:1px solid #dbdbdb;
+				background-color:#fafafa;
+				.ckcon-scroll-in{
+					padding:12px 20px;
+					font-size:12px;
+					font-weight:500;
+					color:#9b9b9b;
+					height:62px;
+					overflow:hidden;
+					overflow-y:auto;
+					@include box-sizing;
+				}
+			}
+		}
+	}
+}
+
+
+
+.service-app-bt-zone{
+	width:570px;
+	margin:0 auto;
+	margin-top:35px;
+	@include mq($mobile) {
+		width:auto;
+		margin-top:30px;
+	}
+	@include mq($tablet) {
+		max-width:570px;
+		margin-top:40px;
+	}
+	.button-box.block.col-2{
+		.btn-area{
+			&:first-child{
+				width:20%;
+				@include mq($mobile) {
+					width:30%;
+				}
+			}
+			&:last-child{
+				width:80%;
+				@include mq($mobile) {
+					width:70%;
+				}
+			}
+		}
+	}
+}
+
+
+.service-last-agr{
+	font-size: 14px;
+	color: #a49293;
+	padding-top: 15px;
+	a{
+		text-decoration:underline;
+		color: #a49293;
+	}
+}

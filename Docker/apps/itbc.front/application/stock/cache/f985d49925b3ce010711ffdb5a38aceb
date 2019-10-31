@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <?php echo $__env->make('partials.head_inc', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <meta charset="utf-8">
+    <title><?php echo $__env->yieldContent('title'); ?></title>
+    <?php echo $__env->make('partials.meta', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <?php echo $__env->yieldContent('meta'); ?>
+    <link rel="stylesheet" href="<?php echo e(config_item('css_url')); ?>landing.css?ver=<?php echo e(config_item('css_ver')); ?>">
+
+    <?php echo $__env->make('partials.js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <script src="<?php echo e(config_item('js_url_service')); ?>experience.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+
+    <?php echo $__env->yieldContent('css'); ?>
+    <?php echo $__env->yieldContent('js'); ?>
+</head>
+
+<body>
+<div id="wrap">
+    <?php echo $__env->yieldContent('content'); ?>
+</div>
+<?php echo $__env->make('partials.out_visit', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</body>
+</html>
+<?php //show_profiler(ENVIRONMENT);?>

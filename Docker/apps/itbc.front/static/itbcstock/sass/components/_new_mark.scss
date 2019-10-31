@@ -1,0 +1,33 @@
+.new-red-mark{
+	&:before{
+		content:"NEW";
+		display:inline-block;
+		width:39px;
+		height:19px;
+		line-height:19px;
+		background-color: #c72b32;
+		font-size:12px;
+		font-weight:700;
+		color:#fff;
+		text-align: center;
+		margin-top: 3px;
+		// margin-left: 5px;
+		margin-right: 5px;
+		vertical-align: top;
+		animation-duration: 1s; animation-name: NewLink; animation-iteration-count: infinite;
+	}
+	// &.mark-table-in{
+	// 	&:after{
+	// 		margin-top: 8px;
+	// 	}
+	// }
+
+
+	@keyframes NewLink {
+		0% { background-color: #c72b32; }
+		25% { background-color: #ffb70b; }
+		50% { background-color: #c72b32; }
+		75% { background-color: #ffb70b; }
+		100% { background-color: #c72b32; }
+	}
+}

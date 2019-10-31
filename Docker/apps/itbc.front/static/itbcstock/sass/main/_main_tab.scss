@@ -1,0 +1,138 @@
+.main-tab-menu-wrap{
+	.tab-menu-bt-zone{
+		display:table;
+		width:100%;
+		@include mq($mobile) {
+			display:none;
+		}
+		@include mq($tablet) {
+			display:table;
+		}
+		.menu-txt{
+			display:table-cell;
+			width:50px;
+			a{
+				transition:.4s;
+				position: relative;
+				display:block;
+				font-size:18px;
+				font-weight:700;
+				color:#9b9b9b;
+				text-align:center;
+				border-bottom: 1px solid #ebe5da;
+				padding-bottom: 15px;
+				text-decoration: none;
+				&:after{
+					content:"";
+					transition:.4s;
+					width:0px;
+				}
+			}
+			&.on{
+				a{
+					// color:#172349;
+					color:#000;
+					&:after{
+						content:"";
+						position:absolute;
+						bottom:-2px;
+						left:0;
+						right:0;
+						margin:0 auto;
+						width:100%;
+						height:3px;
+						background-color: #000;
+					}
+				}
+			}
+		}
+	}
+	.tab-menu-select-zone{
+		display:none;
+		position:relative;
+		background-color:#fff;
+		// height:40px;
+		border-bottom: 2px solid #9b9b9b;
+		@include mq($mobile) {
+			display:block;
+			position: absolute;
+			top: -40px;
+			border: 0;
+			padding: 10px 15px 6px;
+			-moz-box-shadow: 0px 1px 5px #000000;
+			-webkit-box-shadow: 0px 1px 5px #000000;
+			box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+			@include border-radius($border-radius : 5px 5px 0 0);
+			&:after{
+				position:absolute;
+				content:'';
+				width:100%;
+				height:20px;
+				left:0;
+				bottom:-14px;
+				background-color:#fff;
+			}
+		}
+		@include mq($tablet) {
+			display:none;
+		}
+		.label-box{
+			// padding-bottom:10px;
+			span{
+				display:block;
+				font-size: 18px;
+				font-weight:700;
+				color: #172349;
+				@include mq($mobile) {
+					color: #000;
+				}
+				&:after{
+					content:"";
+					display:inline-block;
+					width:0px;
+					height:0px;
+					border-width:5px;
+					border-color:transparent;
+					border-style:solid;
+					border-top:5px solid #172349;
+					margin-left:10px;
+					position: relative;
+					top: 2px;
+					@include mq($mobile) {
+						border-top:5px solid #000;
+					}
+				}
+			}
+		}
+		select{
+			-webkit-appearance:none;
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+			filter:alpha(opacity=0);
+			-webkit-filter:alpha(opacity=0);
+			-ms-filter:alpha(opacity=0);
+			opacity: 0;
+		}
+	}
+	.tab-menu-con-wrap{
+		.con-box{
+			display:none;
+			.list-none{
+				display:table;
+				width:100%;
+				height:199px;
+				.none-txt{
+					display:table-cell;
+					vertical-align: middle;
+					text-align:center;
+					font-size:18px;
+					font-weight:700;
+					color:#000;
+				}
+			}
+		}
+	}
+}

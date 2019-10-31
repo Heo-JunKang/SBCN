@@ -1,0 +1,8 @@
+@charset "utf-8";
+.latest_basic_date h2 { margin-bottom:10px; position: relative;}
+.latest_basic_date h2 span {position: absolute; top:10px; right:0;}
+.latest_basic_date ul {width: 100%;  margin: 5px 0 0 0; padding: 4px 0 20px 0}
+.latest_basic_date ul {position: relative;margin: 0; padding: 0; margin-top: 0px}
+.latest_basic_date ul li {position: relative; list-style: none; line-height: 1.4em; margin-bottom: 5px; height: 21px; overflow: hidden}
+.latest_basic_date ul .subject {width: 90%; font-weight: bold}
+.latest_basic_date ul .date {position: absolute; top:2px; left:295px; width: 45px}

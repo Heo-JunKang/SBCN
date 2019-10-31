@@ -1,0 +1,61 @@
+.mainbig-realtime{
+	.accumulate-claimant{
+		margin-top:20px;
+		text-align:center;
+		span, strong{
+			display:block;
+			line-height:1;
+		}
+		span{
+			font-size:13px;
+			font-weight:500;
+			color:#4a4a4a;
+			margin-bottom:8px;
+		}
+		strong{
+			font-size:36px;
+			font-weight:700;
+			color:#c72b32;
+		}
+	}
+
+	.notic-list-type-box{
+		margin-top:43px;
+		.real-ul{
+			// padding-top:8px;
+			.real-li{
+				position:relative;
+				margin-bottom:12px;
+				&:last-child{
+					margin-bottom:0;
+				}
+				.txt{
+					position: static;
+					display:block;
+					font-size:16px;
+					color:#000;
+					padding-right:100px;
+					overflow:hidden;
+					text-overflow:ellipsis;
+					white-space:nowrap;
+				}
+				.day{
+					position:absolute;
+					top:0;
+					right:0;
+					font-size:16px;
+					color:#000;
+				}
+			}
+		}
+		.bx-wrapper{
+			margin:0;
+			box-shadow: none;
+			border:0;
+			background-color:transparent;
+			.bx-viewport{
+				height:90px !important;
+			}
+		}
+	}
+}

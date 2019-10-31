@@ -1,0 +1,34 @@
+@include mq($mobile) {
+	.kcm-wrap{
+		ul{
+			@include cf;
+			li{
+				float:left;
+				width:33.3333%;
+				color:blue;
+			}
+		}
+	}
+}
+@include mq($tablet) {
+	.kcm-wrap{
+		ul{
+			li{
+				color:yellow;
+			}
+		}
+	}
+}
+
+@include mq($pc) {
+	.kcm-wrap{
+		ul{
+			@include cf;
+			li{
+				float:left;
+				width:33.3333%;
+				color:red;
+			}
+		}
+	}
+}

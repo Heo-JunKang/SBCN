@@ -1,0 +1,54 @@
+h2.main-hd{
+	font-size:18px;
+	font-weight:700;
+	color:#000;
+	border-bottom:2px solid #9b9b9b;
+	padding-bottom:10px;
+	&.center{
+		text-align:center;
+	}
+	&.bdb-x{
+		border-bottom:0;
+		padding-bottom:0;
+	}
+	&.blue-line{
+		border-bottom:1px solid #172349;
+	}
+	&.gra-bg-txt{
+		color:#fff;
+	}
+	&.crown{
+		&:before{
+			content:"";
+			display: inline-block;
+			width:27px;
+			height:20px;
+			background:url($img + 'content/ic_crown.png') 0 0 no-repeat;
+			background-size:27px auto;
+			vertical-align: middle;
+			margin-right: 7px;
+			margin-top: -8px;
+		}
+		&:after{
+			content:"";
+			display: inline-block;
+			width:27px;
+			height:20px;
+			background:url($img + 'content/ic_crown.png') 0 0 no-repeat;
+			background-size:27px auto;
+			vertical-align: middle;
+			margin-left: 7px;
+			margin-top: -8px;
+		}
+	}
+	.red-txt{
+		color:#c82122;
+		line-height:1.6;
+	}
+}
+
+h3.sub-hd-3{
+	font-size:16px;
+	font-weight:600;
+	color:#000;
+}

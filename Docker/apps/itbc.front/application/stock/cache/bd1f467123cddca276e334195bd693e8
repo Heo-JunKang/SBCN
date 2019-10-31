@@ -1,0 +1,26 @@
+<script src="<?php echo e(config_item('ee')); ?>css/aos.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>css/bootstrap.min.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>css/bootstrap/bootstrap-grid.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>css/jquery-ui.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>css/owl.carousel.min.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>css/owl.theme.default.min.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>css/jquery.fancybox.min.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>css/bootstrap-datepicker.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>css/style.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+
+<script src="<?php echo e(config_item('ee')); ?>fonts/flaticon/font/flaticon.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>fonts/icomoon/style.css?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+
+<script src="<?php echo e(config_item('ee')); ?>js/jquery-migrate-3.0.1.min.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/jquery-ui.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/popper.min.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/bootstrap.min.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/owl.carousel.min.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/jquery.stellar.min.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/jquery.countdown.min.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/bootstrap-datepicker.min.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/jquery.easing.1.3.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/aos.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/jquery.fancybox.min.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/jquery.sticky.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+<script src="<?php echo e(config_item('ee')); ?>js/main.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>

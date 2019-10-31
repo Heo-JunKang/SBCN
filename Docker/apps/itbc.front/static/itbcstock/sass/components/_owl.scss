@@ -1,0 +1,70 @@
+.owl-carousel{
+	.owl-nav{
+		button{
+			position:absolute;
+			top:50%;
+			margin-top:-10px;
+			width:20px;
+			height:20px;
+			&.owl-prev{
+				left:10px;
+				background:url($img + 'main/ic_arrow_left.png') 0 0 no-repeat;
+			}
+			&.owl-next{
+				right:10px;
+				background:url($img + 'main/ic_arrow_right.png') 0 0 no-repeat;
+			}
+			span{
+				font-size:0;
+			}
+		}
+	}
+	&.nav-bottom{
+		button{
+			top:auto;
+			bottom:5px;
+			margin-top:0;
+			&.owl-prev{left:35px;}
+			&.owl-next{right:35px;}
+		}
+	}
+
+	.owl-dots{
+		width:1140px;
+		margin:0 auto;
+		position:absolute;
+		bottom:0;
+		left:0;
+		right:0;
+		text-align: right;
+		@include box-sizing;
+		@include mq($mobile) {
+			width:100%;
+			padding-right:20px;
+			padding-bottom:10px;
+			top:215px;
+			bottom:auto;
+		}
+		@include mq($tablet) {
+			top:260px;
+		}
+		.owl-dot{
+			margin:10px 5px;
+			font-size:0;
+			padding-right:30px;
+			padding-bottom:30px;
+			&.active{
+				span{
+					background-color: #fff;
+				}
+			}
+			span{
+				display:inline-block;
+				width:10px;
+				height:10px;
+				@include border-radius($border-radius : 5px);
+				background-color: rgba(0, 0, 0, 0.5 );
+			}
+		}
+	}
+}

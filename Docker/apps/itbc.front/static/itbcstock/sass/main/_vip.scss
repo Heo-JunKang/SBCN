@@ -1,0 +1,25 @@
+.vip-member-part{
+	@include mq($mobile) {
+		padding:6px 0;
+	}
+	.bx-wrapper{
+		padding-top:20px;
+	}
+	h2.main-hd{
+		@include mq($mobile) {
+			text-align: left;
+			&:before{
+				display:none;
+			}
+			&:after{
+				display:none;
+			}
+		}
+		// @include mq($mobile) {
+		// 	text-align:center;
+		// }
+	}
+	.mainhorislide{
+		margin-top:20px;
+	}
+}

@@ -1,0 +1,48 @@
+// sub layout
+.sub-contents-wrap{
+	.gray-color-box{
+		background-color: #f5f5f5;
+	}
+	.blue-color-box{
+		background-color: #172349;
+	}
+}
+
+.sub-fix-size-normal{
+	position:relative;
+	width:1140px;
+	margin:0 auto;
+	@include box-sizing;
+	@include mq($mobile) {
+		width:100%;
+		padding:30px 20px;
+		&.pd-none{
+			padding:0;
+		}
+	}
+}
+
+.sub-fix-size{
+	position:relative;
+	width:1140px;
+	margin:0 auto;
+	padding:30px 0;
+	@include box-sizing;
+	@include mq($mobile) {
+		width:100%;
+		padding:30px 20px;
+	}
+}
+
+.sub-mobile-fix-size{
+	position:relative;
+	width:360px;
+	margin:0 auto;
+	padding:30px 0;
+	@include box-sizing;
+	@include mq($mobile) {
+		width:100%;
+		padding:30px 20px;
+	}
+}
+

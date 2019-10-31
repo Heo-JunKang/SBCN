@@ -1,0 +1,66 @@
+/* itbc gnb */
+.itbc-main-header-gnb-wrap{
+	background-color:#222;
+	@include mq($mobile) {
+		display:none;
+	}
+	.header-gnb-in{
+		width:1140px;
+		height:42px;
+		line-height:42px;
+		margin:0 auto;
+		background-color:#222;
+		font-size:0;
+		a{
+			margin-right:20px;
+			display:inline-block;
+			vertical-align: middle;
+			font-size:13px;
+			color:#fff;
+			font-weight:300;
+			&:hover{
+				opacity: 0.7;
+			}
+		}
+	}
+}
+
+.top-onair-quick-wrap{
+	background-color:#4a90e2;
+	@include mq($mobile) {
+		display:none;
+	}
+	.top-onair-quick-in{
+		position: relative;
+		background-color:#4a90e2;
+		height:72px;
+		width:1140px;
+		margin:0 auto;
+		transition:.4s;
+		p{
+			font-size:17px;
+			font-weight:600;
+			color:#fff;
+			padding-top: 10px;
+			strong{
+				font-weight:700;
+			}
+		}
+		a{
+			position: absolute;
+			top:23px;
+			right:0;
+			font-size:17px;
+			font-weight:700;
+			color:#fff;
+			i{
+				width:7px;
+				height:13px;
+				display:inline-block;
+				background:url($img + 'itbc/arrow_right_white.png') 0 0 no-repeat;
+				background-size:7px 13px;
+				margin-left:8px;
+			}
+		}
+	}
+}

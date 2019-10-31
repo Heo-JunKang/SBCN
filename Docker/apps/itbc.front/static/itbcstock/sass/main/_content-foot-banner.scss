@@ -1,0 +1,45 @@
+.content-foot-banner{
+	@include mq($mobile) {
+		padding:6px 20px;
+	}
+	.foot-banner-in{
+		@include cf;
+		margin:0 -14.5px;
+		@include mq($mobile) {
+			margin:-5px;
+		}
+	}
+	.ft-banner-zone{
+		float:left;
+		padding:0 14.5px;
+		@include box-sizing;
+		@include mq($mobile) {
+			// float:none;
+			width:50%;
+			padding:5px;
+			// padding-bottom:12px;
+			// &:last-child{
+			// 	padding-bottom:0;
+			// }
+		}
+		@include mq($tablet) {
+			float:left;
+			width:25%;
+			padding:12px;
+			@include box-sizing;
+		}
+		a{
+			display:block;
+			position:relative;
+			-moz-box-shadow: 0px 1px 5px #000000;
+			-webkit-box-shadow: 0px 1px 5px #000000;
+			box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+		}
+		img{
+			width:263px;
+			@include mq($mobile) {
+				width:100%;
+			}
+		}
+	}
+}

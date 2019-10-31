@@ -1,0 +1,411 @@
+﻿@charset "UTF-8";
+/* ---------sub - service------------ */
+.sub_menu {
+    width:100%;
+    height:63px;
+    border-top:1px solid #ebebec;
+    text-align:center;
+    background: #000006;
+    margin-bottom:30px;
+}
+.sub_page .fix_header {
+    position:fixed;
+    top: 95px;
+    z-index:99;
+    opacity: 0.95;
+}
+.sub_menu span{
+    display: inline-block;
+    padding:23px 20px 17px;
+    font-size: 20px;
+    color: #a2a2a2;
+    border-bottom:3px solid #000006;
+    cursor: pointer;
+}
+.sub_menu span.active {
+    color: #fff;
+    border-bottom:3px solid #fff;
+}
+.service_contents {
+    margin:0 auto 48px;
+    padding:36px 0 0;
+}
+.service_contents > div {
+    display:none;
+}
+.service_contents > div.select {
+    display:block;
+}
+.service_list {
+    overflow:hidden;
+    position: relative;
+    margin-top:12px;
+    border-radius: 3px;
+    border: solid 1px #ebebec;
+    background:#fff;
+}
+.service_list a {
+    display:block;
+    height:217px;
+    padding:40px 0;
+    color: #0d162a;
+}
+.service_list a > div {
+    float:left;
+    line-height:28px;
+}
+.service_list .info_1 {
+    width:745px;
+    height: 217px;
+    border-right: 1px solid #ddd;
+    margin-right:25px;
+}
+.service_list .info_1 > div {
+    margin-left:264px;
+}
+.service_list h4 {
+    color:#0d162a;
+    letter-spacing:-2.1px;
+    font-size: 36px;
+    font-weight:700;
+}
+.service_list h4.lt {
+    font-weight:300;
+}
+.service_list h4 span.sm {
+    font-size: 18px;
+    margin-left:10px;
+    font-weight:300;
+}
+.service_list .info_1 .info_detail_1 {
+    margin-top:25px;
+    font-size: 20px;
+    font-weight:700;
+    color: #f63440;
+    line-height:1.32;
+    letter-spacing:-1.1px;
+}
+.service_list  .info_1 img {
+   position: absolute;
+   left:43px;
+   bottom:0;
+}
+.human_service  .info_1 img {
+    position: absolute;
+    left: 45px;
+    bottom: 0;
+ }
+.service_list  .info_1 .info_detail_2 {
+    position: absolute;
+    top: 165px;
+    font-size: 18px;
+    color: #a49293;
+
+}
+.service_list .title {
+    font-size: 12px;
+    color: #a49293;
+}
+.service_list  .info_2{
+    width:300px;
+}
+.service_list  .info_2 .info_profit_1 p span {
+    font-size: 18px;
+    float:right;
+    text-align: right;
+    color: #f63440;
+}
+.service_list  .info_2 .info_profit_2 {
+    margin-top:25px;
+}
+.service_list  .info_2 .info_profit_2 .total_profit {
+    float:left;
+    font-size: 42px;
+    font-weight:300;
+    color: #f63440;
+    margin-top:5px;
+}
+.service_list  .info_2 .info_profit_2 .request_btn {
+    float:right;
+    width: 104px;
+    height: 44px;
+    line-height:47px;
+    text-align: center;
+    border-radius: 3px;
+    border: solid 1px #f63440;
+    color: #f63440;
+}
+/* service_list - hover */
+.service_list:hover {
+    border: solid 1px #a49293;
+    box-shadow: 0px 7px 16px 0 rgba(0, 0, 0, 0.08);
+}
+.service_list:hover .info_2 .info_profit_2 .request_btn {
+    background-color: #f63440;
+    color: #fcf9f9;
+}
+/* ---------sub - review------------ */
+.review {
+    margin-bottom:48px;
+}
+.review .side_contents div {
+    overflow:hidden;
+}
+.review .review_list div div {
+    float:left;
+    width: 600px;
+    padding-top:20px;
+    margin-left:17px;
+    border-top:1px solid #ebebec;
+}
+.review_list div:first-child div {
+    border-top:none;
+}
+.review .side_contents div .thumb {
+    display:block;
+    float:left;
+    width: 211px;
+    height: 143px;
+    border-radius: 3px;
+    border: solid 1px #ebebec;
+    padding:10px;
+    margin-top:5px;
+}
+div.review_list img {
+    width:100%;
+    height:100%;
+}
+div.review_list div div > span {
+    display:block;
+    font-size: 12px;
+    color: #a49293;
+    margin-bottom:16px;
+}
+.review .side_contents div h4 {
+    font-size: 18px;
+    color: #0d162a;
+    margin-bottom:18px;
+}
+.review_list div p {
+    font-size: 14px;
+    height: 74px;
+    color: #a2a2a2;
+    margin-bottom:17px;
+    line-height: 19px;
+}
+/* ---------sub - request_input------------ */
+.request_input  form > div {
+    overflow:hidden;
+    width: 570px;
+    margin:0 auto;
+}
+.request_input h3 {
+    font-size: 34px;
+    font-weight:300;
+    margin:34px 0;
+}
+.request_input label {
+    display:block;
+    margin-bottom:12px;
+}
+.request_input select {
+    height: 48px;
+    background-image: url('../images/ic_global_arrow_down 2.png');
+    background-repeat:no-repeat;
+    background-color:#fff;
+    background-position: bottom 17px right 10px;
+}
+.request_input div.f_right > * {
+    width: 92px;
+    margin-left:15px;
+}
+.request_input .btn_wrap {
+    margin:60px auto 43px;
+    padding-bottom:14px;
+}
+.request_input .btn_wrap p {
+    clear: both;
+    text-align:right;
+    font-size: 14px;
+    color: #a49293;
+    padding-top:15px;
+}
+/* ---------sub - request_complete------------ */
+.request_complete h3 {
+    font-size: 34px;
+    font-weight:300;
+    margin:34px 0 10px;
+    text-align:center;
+}
+.request_complete > p {
+    font-size: 18px;
+    font-weight:700;
+    color: #0d162a;
+    text-align:center;
+    margin-bottom:70px;
+}
+div.fees_info {
+    font-size: 18px;
+    color: #a49293;
+    text-align:center;
+}
+.fees_info table {
+    width:987px;
+    margin:23px auto 0;
+}
+.fees_info table td{
+    width: 275px;
+    height:63px;
+    vertical-align:middle;
+    border:1px solid #ebebec;
+}
+.fees_info table td:first-child {
+    width: 161px;
+    border-left:none;
+}
+.request_complete .btn_wrap {
+    text-align:center;
+    margin-top:72px;
+    padding-bottom:45px;
+}
+.request_complete .btn_wrap span {
+    width: 163px;
+}
+/* ---------sub - my_service_detail------------ */
+.info_2 .service_period p {
+    font-size: 18px;
+    padding-top:10px;
+}
+.info_2 .service_period p span {
+    float: right;
+    color: #f63440;
+}
+.info_2 .expiry_date p {
+    font-size: 18px;
+    padding-top:10px;
+    margin:10px 0 40px;
+    border-top:1px solid #ebebec;
+}
+.info_2 .expiry_date span {
+    float: right;
+    font-size: 52px;
+    font-weight:300;
+    color: #f63440;
+}
+.info_2 .expiry_date span {
+    float: right;
+    font-size: 52px;
+    font-weight:300;
+    color: #f63440;
+}
+.contents .contract p {
+    font-size: 18px;
+    color: #a49293;
+    margin-bottom:24px;
+}
+.contents .contract > div {
+    width: 867px;
+    height: 1584px;
+    background: #fff;
+}
+
+.service_list {
+    overflow:hidden;
+    position: relative;
+    margin-top:18px;
+    border-radius: 3px;
+    border: solid 1px #ebebec;
+    background:#fff;
+}
+.service_list a {
+    display:block;
+    padding:40px 0;
+    color: #0d162a;
+}
+.service_list a > div {
+    float:left;
+    line-height:28px;
+}
+.service_list .info_1 {
+    width:729px;
+    border-right: 1px solid #ddd;
+    margin-right:39px;
+}
+.service_list .info_1 > div {
+    margin-left:264px;
+}
+.service_list h4 {
+    font-size: 36px;
+    font-weight:700;
+    padding-left:40px;
+}
+.service_list h4 span.lt {
+    font-weight:300;
+}
+.service_list h4 span.sm {
+    font-size: 18px;
+    margin-left:10px;
+}
+.service_list .info_1 .info_detail_1 {
+    margin-top:25px;
+    font-size: 20px;
+    font-weight:700;
+    color: #f63440;
+    letter-spacing:-2px;
+}
+.service_list  .info_1 img {
+   position: absolute;
+   left: 0px;
+   top: 103px;
+}
+.human_service  .info_1 img {
+    position: absolute;
+    left: 45px;
+    bottom: 0;
+ }
+.service_list  .info_1 .info_detail_2 {
+    margin-top:0;
+    font-size: 18px;
+    color: #a49293;
+    line-height:1.4;
+    letter-spacing:-1.1px;
+}
+.service_list .title {
+    font-size: 12px;
+    color: #a49293;
+}
+.service_list  .info_2{
+    width:350px;
+}
+.service_list  .info_2 .info_profit_1 {
+    font-size:18px;
+    letter-spacing:-1.1px;
+}
+.service_list  .info_2 .info_profit_1 p span {
+    font-size: 18px;
+    float:right;
+    text-align: right;
+    color: #f63440;
+}
+.service_list  .info_2 .info_profit_2 {
+    margin-top:25px;
+}
+.service_list  .info_2 .info_profit_2 .total_profit {
+    float:left;
+    font-size: 52px;
+    font-weight:400;
+    color: #f63440;
+    margin-top:5px;
+    letter-spacing:-3.2px;
+}
+.service_list  .info_2 .info_profit_2 .request_btn {
+    /* float:right; */
+    /* width: 104px; */
+    width:100%;
+    height: 44px;
+    line-height:44px;
+    text-align: center;
+    border-radius: 3px;
+    border: solid 1px #f63440;
+    color: #f63440;
+}

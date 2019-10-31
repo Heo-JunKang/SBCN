@@ -1,0 +1,114 @@
+/* content */
+.economy-lab-wrap{
+	#content {
+		.content-in{
+			background-color: #fff;
+			// min-height: 1325px;
+			// padding-top:29px;
+			&.sub-white-bg{
+				background-color:#fff;
+			}
+			@include mq($mobile) {
+				min-height: auto;
+			}
+		}
+		.top-con-gradation-box{
+			.top-con-gradation-in{
+				@include cf;
+				padding:50px 0;
+				.tab-banner-area{
+					float:left;
+					width:760px;
+				}
+				.present-stats-list{
+					float:right;
+					width:360px;
+				}
+			}
+		}
+		.bottom-fix-size-box{
+			width:1140px;
+			margin:0 auto;
+			padding-top:18px;
+			padding-bottom:170px;
+			@include mq($mobile) {
+				padding-top:0;
+				width:100%;
+				padding-bottom:20px;
+			}
+		}
+		.ab-detail-btn{
+			position:absolute;
+			top:20px;
+			right:20px;
+			font-size:13px;
+			font-weight:500;
+			color:#4a4a4a;
+			text-decoration:underline;
+			@include mq($mobile) {
+				top:18px;
+			}
+		}
+		.wid-size-div{
+			@include cf;
+			margin:0 -15px;
+			@include mq($mobile) {
+				// margin:-6px 0;
+				margin:0;
+			}
+			.divi-box{
+				float:left;
+				padding:0 15px;
+				@include box-sizing;
+				@include mq($mobile) {
+					float:none;
+					padding:6px 0;
+				}
+				.shadowbox{
+					// height:239px;
+					&.hei-catch{
+						height:365px;
+					}
+					&.hei-auto{
+						height:auto;
+					}
+				}
+			}
+			&.w50{
+				.divi-box{
+					width:50%;
+					@include mq($mobile) {
+						width:100%;
+					}
+				}
+			}
+			&.w33{
+				.divi-box{
+					width:33.3333%;
+					@include mq($mobile) {
+						width:100%;
+					}
+				}
+			}
+			&.w2fix-box{
+				.divi-box{
+					.shadowbox{
+						width:360px;
+						@include mq($mobile) {
+							width:100%;
+							// padding:15px 20px;
+						}
+					}
+					& + .divi-box{
+						.shadowbox{
+							width:750px;
+							@include mq($mobile) {
+								width:100%;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

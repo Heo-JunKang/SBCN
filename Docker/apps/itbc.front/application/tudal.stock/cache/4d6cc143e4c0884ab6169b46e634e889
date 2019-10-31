@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <?php echo $__env->make('partials.head_inc', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <meta charset="UTF-8">
+    <title><?php echo $__env->yieldContent('title'); ?></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <?php echo $__env->make('partials.meta', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('partials.css_main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('partials.js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->yieldContent('css'); ?>
+    <?php echo $__env->yieldContent('js'); ?>
+</head>
+
+<body>
+<!-- wrap -->
+<div id="wrap">
+    <!-- main -->
+    <div class="economy-lab-wrap">
+        <div class="economy-lab-inner">
+            <?php echo $__env->make('partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <div id="content" class="main">
+                <div class="content-in <?php echo e($add_class); ?>">
+                    <?php echo $__env->yieldContent('content'); ?>
+                </div>
+            </div>
+            <?php echo $__env->make('partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php /*<?php if(!is_login()): ?>*/ ?>
+                <?php /*<?php echo $__env->make('partials.footer_fixer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>*/ ?>
+            <?php /*<?php endif; ?>*/ ?>
+        </div>
+    </div>
+</div>
+<?php echo $__env->make('partials.layer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('partials.out_visit', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</body>
+</html>

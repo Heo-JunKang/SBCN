@@ -1,0 +1,31 @@
+.tv-chief-researcher{
+	padding-top:20px;
+	.chief-list{
+		@include cf;
+		padding-top:20px;
+		margin:-10px -4px;
+		li{
+			float:left;
+			padding:10px 4px;
+			.chief-in{
+				position:relative;
+				width:269px;
+			}
+		}
+		img{
+			//
+		}
+		.btn-ab{
+			position: absolute;
+			bottom:0;
+			left:0;
+			width:100%;
+			background-color: rgba(0, 0, 0, 0.2);
+			padding:12px;
+			@include box-sizing;
+			a{
+				//
+			}
+		}
+	}
+}

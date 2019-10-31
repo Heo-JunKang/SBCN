@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+* {margin:0; padding:0; box-sizing:border-box;}
+html{overflow-y:scroll;font-size:30px;}
+body{width:100%; height:100%;}
+ul, ol, li {list-style:none;}
+p,div,ul,li,dl,dt,dd,ol,em,fieldset,textarea,input,select,table,th,td,address,cite,
+h1,h2,h3,h4,h5,h6, button {font-family:'Noto Sans Korean','NanumGothic','Malgun Gothic', "돋움","dotum", sans-serif; line-height:160%;}
+img {border:0px; display:block; vertical-align: middle;}
+/* Link Style */
+a, a:link {font-family:'Noto Sans Korean','NanumGothic', 'Malgun Gothic', "돋움","dotum", sans-serif;text-decoration:none; }
+a:active {background:none;}
+a:hover, a:focus {text-decoration:none;}
+fieldset, button{border:0;}
+
+#wrap{max-width:1200px;margin:0 auto;overflow:hidden;position:relative;background:url('images/apply_bg.jpg') no-repeat left bottom;}
+div.img{position:relative;}
+div.img h1{visibility:hidden;position:absolute;left:294px;top:30px;}
+div.apply{width:100%;position:relative;z-index:10;padding-bottom:45px;background:#0d0b06;}
+div.apply div.title{margin-bottom:35px;padding-top:25px;position:relative;}
+div.apply div.title span{position:absolute;top:-66px;right:-6px;}
+div.apply form{max-width:614px;margin:0 auto;}
+div.apply div.form{margin:0 auto;overflow:hidden;}
+div.apply div.form ul{width:74%;float:left;}
+div.apply div.form ul li{overflow:hidden;margin-bottom:13px;}
+div.apply div.form ul li span{width:20%;display:block;float:left;font-size:14px;color:#fff;}
+div.apply div.form ul li p{width:80%;float:right;line-height:45px;}
+div.apply div.form ul li input, div.apply div.form ul li select{display:block;height:46px;padding:0 10px;font-family:'Noto Sans Korean';background:#ededed;border:0;}
+div.apply div.form ul li input.name{width:100%;}
+div.apply div.form ul li .num{width:30%;float:left;}
+div.apply div.form ul li i{float:left;width:5%;text-align:center;font-weight:700;font-size:13px;color:#fff;line-height:46px;}
+div.apply div.form button{width:32%;max-width:149px;float:right;background:none;cursor:pointer;outline:none;}
+div.apply div.form button img{width:100%;}
+div.apply div.policy{margin-top:13px;margin-left:14%;overflow:hidden;}
+div.apply div.policy p{float:left;line-height:15px;}
+div.apply div.policy p input[type="checkbox"] {display:none;}
+div.apply div.policy p input[type="checkbox"] + label{font-size:18px;color:#fff;cursor:pointer;}
+div.apply div.policy p input[type="checkbox"] + label span {display:inline-block;width:15px;height:15px;margin:-4px 9px 0 0; vertical-align:middle;background:url('images/checkbox.gif') left top no-repeat;cursor:pointer;background-size:100%;}
+div.apply div.policy p input[type="checkbox"]:checked + label span {background-position:left -15px;}
+div.apply div.policy .show{float:left;display:block;padding:0 6px;margin-left:8px;color:#fff;font-size:12px;line-height:18px;background:#767676;cursor:pointer;border-radius:2px;}
+div.footer{width:100%; background:#000;}
+div.footer img{display:block;margin:0 auto;}
+
+div.bg{display:none;position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.5;z-index:98;}
+
+img.img{margin:0 auto;}
+.con-scr{margin-bottom:5px;}
+.confirm_bx{position:relative;overflow:hidden;height:57px;}
+.confirm_bx .redtxt{float:right;color:red;font-size:12px;}
+
+.banner{width:100%;background:#7c6442;}
+.banner img{display:block;margin:0 auto;}
+@media all and (max-width:1200px){
+	.main-img{width:100%;}
+}
+@media all and (max-width:992px){
+	.main-img{width:100%;}
+}
+@media all and (max-width:768px) {
+img{width:100%;}
+#wrap img.center{width:156%;margin-left:-28%;}
+div.img > img{width:150%;margin-left:-25%;}
+div.img h1{visibility:visible;width:80px;left:15px;top:3%;}
+
+div.apply div.title{margin-bottom:20px;padding:20px 0 0;}
+div.apply div.title p{width:76%;}
+div.apply div.title span{max-width:100px;width:23%;top:-88%;right:0;}
+
+div.apply form{width:90%;}
+div.apply div.form ul{width:65%;margin-top:0;}
+div.apply div.form ul li{overflow:hidden;margin-bottom:8px;}
+div.apply div.form ul li span{width:17%;font-size:12px;line-height:27px;}
+div.apply div.form ul li p{width:80%;line-height:27px;font-size:10px;}
+div.apply div.form ul li input, div.apply div.form ul li select{height:27px;padding:0 3px;font-size:12px;}
+div.apply div.form ul li i{font-size:10px;line-height:27px;}
+}

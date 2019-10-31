@@ -1,0 +1,49 @@
+.main-btn{
+	cursor:pointer;
+	box-sizing: border-box;
+	border:0;
+	color:#fff;
+	font-weight:700;
+	display:inline-block;
+	font-family: 'Noto Sans', '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Helvetica, Arial, sans-serif;
+	&a:link, &a:visited{
+		color:#fff;
+	}
+	&:hover{
+		text-decoration: none;
+	}
+	&.smal{
+		height:30px;
+		line-height:30px;
+		padding:0 10px;
+		font-size:13px;
+	}
+	&.big{
+		height:59px;
+		line-height:59px;
+	}
+	&.red-c{
+		background-color: #c72b32;
+	}
+	&.gray-c{
+		background-color: #9b9b9b;
+	}
+	&.blue-c{
+		background-color: #425e99;
+	}
+
+	&.round{
+		font-size:13px;
+		font-weight:700;
+		width:117px;
+		height:30px;
+		line-height:30px;
+		@include border-radius($border-radius : 15px);
+		text-align:center;
+	}
+}
+a.main-btn{
+	&:link, &:visited{
+		color:#fff;
+	}
+}

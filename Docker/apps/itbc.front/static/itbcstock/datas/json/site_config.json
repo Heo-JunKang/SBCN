@@ -1,0 +1,23 @@
+{
+    "contents": {
+        "items": {
+            "site_title"    : "ITBC Stock",
+            "company_name": "에이인텔리블록그룹주식회사",
+            "company_address": "서울특별시 영등포구 의사당대로 97 5층",
+            "company_no": "707-88-01132",
+            "compay_ceo": "하동수",
+            "compay_com_no": "제 2017-서울영등포-0758호",
+            "user_info_manager": "하동수",
+            "user3_policy": "",
+            "marketing_policy": "",
+            "service_policy": "",
+            "bank_info": "1577-3507",
+            "magnger_name": "",
+            "bank_name" : "신한은행",
+            "bank_number" : "140-012-149337",
+            "mail" : "stock@itbc.co.kr",
+            "ori_price" : 2000000
+        },
+        "etc": []
+    }
+}

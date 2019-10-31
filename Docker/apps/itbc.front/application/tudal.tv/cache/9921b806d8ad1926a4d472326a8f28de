@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <?php echo $__env->make('partials.head_inc', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <title><?php echo $__env->yieldContent('title'); ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-width">
+    <?php echo $__env->make('partials.meta', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('partials.css', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('partials.js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('partials.tracking_log_header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->yieldContent('css'); ?>
+    <?php echo $__env->yieldContent('js'); ?>
+</head>
+
+<body>
+<div id="wrap">
+    <!-- main -->
+    <div class="economy-lab-wrap">
+        <div class="economy-lab-inner">
+            <?php /*<?php echo $__env->make('partials.top_banner',['top'=>$top_banner], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>*/ ?>
+            <?php echo $__env->make('partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <div id="content" class="main">
+                <div class="content-in <?php echo e($add_class); ?>">
+                    <?php echo $__env->yieldContent('content'); ?>
+                </div>
+            </div>
+
+            <?php echo $__env->make('partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        </div>
+    </div>
+</div>
+<?php echo $__env->make('partials.out_visit', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</body>
+</html>
+<?php //show_profiler(ENVIRONMENT);?>

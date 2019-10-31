@@ -1,0 +1,15 @@
+.main-briefing-slide-wrap{
+	.bx-wrapper{
+		padding-top:5px;
+	}
+	.shadowbox{
+		height:240px;
+	}
+	.mainhorislide{
+		// margin:5px 0;
+		margin-top:22px;
+		@include mq($mobile) {
+			margin-top:15px;
+		}
+	}
+}

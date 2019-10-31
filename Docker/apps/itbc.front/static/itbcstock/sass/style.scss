@@ -1,0 +1,99 @@
+/*
+ * kcmschool scss 2018.09.20 ver_001
+ */
+
+@charset "utf-8";
+
+// susy
+@import "../../node_modules/susy/sass/susy";
+
+// font
+@import "fonts/notosans"; // Noto-Sans CJK 폰트(한영일중 폰트)
+
+// basic spec
+@import "config";
+
+// function + mixin
+@import "utils/**/*.scss";
+
+// helper class
+@import "helpers/*.scss";
+
+// base
+@import "base/normalize";
+@import "base/base";
+
+// components
+@import "components/button";
+@import "components/tab";
+@import "components/input";
+@import "components/table";
+
+@import "components/heading";
+@import "components/shadowbox";
+@import "components/gradationbox";
+@import "components/mainform";
+@import "components/mainbtn";
+@import "components/mainhorislide";
+@import "components/owl";
+@import "components/search_list";
+@import "components/new_mark";
+@import "components/more_btn";
+// @import "components/list";
+
+@import "parts/tabs";
+@import "parts/slide_board";
+@import "parts/board_search";
+
+// layout
+@import "layout/layout";
+@import "layout/sub-layout";
+@import "layout/content";
+@import "layout/bxslider";
+
+// common
+@import "common/header";
+@import "common/footer";
+@import "common/popup";
+
+// main (메인 각 영역 css)
+@import "main/top_banner"; // 상단배너
+@import "main/big_banner"; // 메인 슬라이드 배너
+@import "main/detail_search"; // 종목진단 검색
+@import "main/notice_board"; // 게시판형 리스트
+@import "main/first_guide"; // 처음 방문하셧나요?
+@import "main/main_tab"; // 메인 탭
+@import "main/stock_list"; // 포착종목 종합
+@import "main/researcher"; // 프리미엄경제연구소 수석연구원
+@import "main/vip"; // VIP회원님들의 수익률 인증샷!
+@import "main/briefing"; // 수석연구원 실적 브리핑
+@import "main/bottom_fixbar"; // 사이드 배너
+@import "main/content-foot-banner"; // 하단 배너 리스트
+@import "main/side-quick-banner"; // 사이드 배너
+
+@import "itbc_main/itbc-main-layout";
+@import "itbc_main/itbc-main-youtube";
+@import "itbc_main/itbc-main-air";
+@import "itbc_main/itbc-main-gnb";
+@import "itbc_main/itbc-main-professional";
+@import "itbc_main/itbc-main-row-banner";
+
+@import "itbc_sub/common";
+@import "itbc_sub/itbc-sub-service";
+@import "itbc_sub/itbc-sub-professional-detail";
+
+
+// page
+@import "main/main"; // 메인 컨첸츠 전체적으로 연결 작업
+
+
+@import "sub/member";
+@import "sub/intro";
+@import "sub/vip";
+@import "sub/experience";
+@import "sub/profit";
+@import "sub/investment";
+@import "sub/on";
+@import "sub/alphaon";
+@import "sub/guide";
+@import "sub/customer";

@@ -1,0 +1,59 @@
+// 운용철학
+.int-philosophy-list-pg{
+	// padding:30px 0;
+	@include mq($mobile) {
+		padding:0;
+	}
+
+	.int-phi-ul{
+		margin:46px -3px 0;
+		@include cf;
+		@include mq($mobile) {
+			margin:-3px;
+			padding-top:20px;
+		}
+		.int-phi-li{
+			float:left;
+			width:185px;
+			padding:0 3px;
+			@include mq($mobile) {
+				width:50%;
+				padding:3px;
+				@include box-sizing;
+			}
+			@include mq($tablet) {
+				width:33.3333%;
+			}
+		}
+		.int-phi-box{
+			background-color: #fff;
+			border-bottom:2px solid #172349;
+			.pic{
+				width:100%;
+			}
+			.pic-int{
+				background-color: #fff;
+				padding:12px 10px;
+			}
+			.name{
+				display:block;
+				font-size:18px;
+				font-weight:700;
+				color:#172349;
+				margin-bottom:3px;
+			}
+			.spec{
+				font-size:12px;
+				color:#172349;
+				span{
+					display:block;
+					@include mq($mobile) {
+						white-space:nowrap;
+						overflow:hidden;
+						text-overflow:ellipsis;
+					}
+				}
+			}
+		}
+	}
+}

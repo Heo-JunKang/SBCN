@@ -1,0 +1,19 @@
+<?php $__env->startSection('js'); ?>
+    <script type="text/javascript">
+
+    </script>
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo e($title); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

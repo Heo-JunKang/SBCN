@@ -1,0 +1,665 @@
+/* itbc professional detail */
+.sub-pg-pro-detail-wrap{
+	.pro-dt-wrap{
+		background-color: #f5f5f5;
+		@include mq($mobile) {
+			padding:15px;
+		}
+		.sub-fix-size-normal{
+			height:531px;
+			background-color: #f5f5f5;
+			@include mq($mobile) {
+				height:auto;
+				padding:0;
+			}
+		}
+		.pic{
+			position: absolute;
+			bottom:0;
+			left:59px;
+			@include mq($mobile) {
+				position:static;
+				text-align:center;
+				padding:20px 10px;
+			}
+			img{
+				@include mq($mobile) {
+					max-width:216px;
+				}
+			}
+
+		}
+		.detail-con{
+			padding-top:60px;
+			padding-left:450px;
+			@include mq($mobile) {
+				padding:0;
+				text-align:center;
+			}
+			h2{
+				.word, strong, em{
+					display: block;
+				}
+				.word{
+					font-size:20px;
+					font-weight:500;
+					color:#4a4a4a;
+					@include mq($mobile) {
+						font-size:15px;
+					}
+				}
+				strong{
+					font-size:46px;
+					font-weight:700;
+					color:#000;
+					line-height: 1.1;
+					margin:13px 0;
+					@include mq($mobile) {
+						font-size:25px;
+						margin:5px 0;
+					}
+				}
+				em{
+					font-size:29px;
+					font-weight:600;
+					color:#000;
+					font-style:normal;
+					@include mq($mobile) {
+						font-size:15px;
+					}
+					span{
+						font-weight:300;
+					}
+				}
+			}
+			.list-detail-box{
+				@include cf;
+				margin-top:35px;
+				@include mq($mobile) {
+					margin-top:15px;
+				}
+				.profile-box{
+					@include box-sizing;
+					float:left;
+					width:336px;
+					min-height:260px;
+					padding:20px 16px;
+					background-color:#fff;
+					margin-right:16px;
+					@include mq($mobile) {
+						float:none;
+						margin-right:0;
+						width:auto;
+						height:auto;
+						min-height:auto;
+						margin-bottom:15px;
+					}
+					@include mq($tablet) {
+						position: relative;
+						float:left;
+						width:50%;
+						min-height:260px;
+						&:after{
+							position: absolute;
+							top:0;
+							right:0;
+							// margin-top:-30%;
+							display:block;
+							content:"";
+							width:1px;
+							height:100%;
+							background-color:#d6d6d6;
+						}
+					}
+					&:last-child{
+						margin-right:0;
+						@include mq($mobile) {
+							margin-bottom:0px;
+						}
+					}
+					strong{
+						display:inline-block;
+						height:32px;
+						line-height:32px;
+						text-align: center;
+						font-size:16px;
+						font-weight:600;
+						border-style: solid;
+						border-width:1px;
+						padding:0 20px;
+						margin-bottom:15px;
+						@include border-radius($border-radius : 17px);
+						border-color:#000;
+						@include mq($mobile) {
+							font-size:15px;
+						}
+					}
+					ul{
+						height:162px;
+						overflow:hidden;
+						overflow-y:auto;
+						@include mq($mobile) {
+							max-height:auto;
+						}
+						@include mq($tablet) {
+							overflow:hidden;
+							overflow-y:auto;
+							max-height:170px;
+						}
+						li{
+							font-size:16px;
+							font-weight:500;
+							color:#24252c;
+							margin-bottom:6px;
+							text-indent: -9px;
+							padding-left: 9px;
+							@include mq($mobile) {
+								font-size:14px;
+								text-align:left;
+								text-indent: -8px;
+								padding-left: 8px;
+							}
+							&:last-child{
+								margin-bottom:0;
+							}
+						}
+					}
+					&.profile{
+						strong{
+							color:#d0021b;
+							border-color:#d0021b;
+						}
+					}
+					&.tendency{
+						strong{
+							color:#4a90e2;
+							border-color:#4a90e2;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.pro-dt-tab{
+		padding-top:68px;
+		padding-bottom:30px;
+		@include mq($mobile) {
+			padding-top:20px;
+			padding-bottom:15px;
+		}
+		.sub-fix-size-normal{
+			padding:0;
+			@include mq($mobile) {
+				padding:0 15px;
+			}
+		}
+		.tab{
+			//
+		}
+	}
+
+	.best-ls-wrap{
+		padding:30px 0;
+		@include mq($mobile) {
+			padding:15px;
+		}
+		.sub-fix-size-normal{
+			@include cf;
+			padding:0;
+		}
+		h3{
+			font-size:21px;
+			font-weight:600;
+			color:#24252c;
+			margin-bottom:30px;
+			@include mq($mobile) {
+				font-size:18px;
+				margin-bottom:15px;
+			}
+		}
+		ul{
+			@include cf;
+			margin:0 -6px;
+			@include mq($mobile) {
+				margin:-6px;
+			}
+			li{
+				@include box-sizing;
+				float:left;
+				text-align:center;
+				width:20%;
+				display:table;
+				align-items: center;
+				justify-content: center;
+				padding:0 6px;
+				@include mq($mobile) {
+					width:50%;
+					padding:6px;
+				}
+			}
+		}
+		.best-ls-in{
+			display:table-cell;
+			vertical-align: middle;
+			position:relative;
+			border:1px solid #d2d2d2;
+			background-color:#f5f5f5;
+			height:148px;
+			padding:0 5px;
+			@include mq($mobile) {
+				height:auto;
+				padding:20px 5px;
+			}
+		}
+		.number{
+			position:absolute;
+			top:0;
+			left:17px;
+			font-size:0;
+			@include mq($mobile) {
+				left:5px;
+			}
+			span{
+				z-index: 1;
+				text-align:center;
+				position: relative;
+				display:inline-block;
+				font-size:17px;
+				font-weight:700;
+				font-style:normal;
+				color:#fff;
+				width:40px;
+				height:29px;
+				line-height:29px;
+				background-color:#e84262;
+				@include mq($mobile) {
+					font-size:15px;
+					width:30px;
+					height:20px;
+					line-height:20px;
+				}
+				&:before{
+					position:absolute;
+					bottom:-8px;
+					left:0;
+					content:"";
+					display:block;
+					border-width:11px 20px;
+					border-style:solid;
+					border-color:transparent;
+					border-left-color:#e84262;
+					@include mq($mobile) {
+						border-width:8px 17px;
+					}
+				}
+				&:after{
+					position:absolute;
+					bottom:-8px;
+					right:0;
+					content:"";
+					display:block;
+					border-width:11px 20px;
+					border-style:solid;
+					border-color:transparent;
+					border-right-color:#e84262;
+					@include mq($mobile) {
+						border-width:8px 17px;
+					}
+				}
+			}
+		}
+		strong{
+			display:block;
+			font-size:18px;
+			font-weight:600;
+			color:#24252c;
+			padding-top:15px;
+			overflow : hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			@include mq($mobile) {
+				font-size:16px;
+				height:1rem;
+				line-height:1rem;
+			}
+			span{
+				//
+			}
+		}
+		em{
+			display:block;
+			font-size:28px;
+			font-weight:700;
+			font-style:normal;
+			color:#e84262;
+			margin-top:5px;
+			@include mq($mobile) {
+				font-size:20px;
+			}
+			span{
+				//
+			}
+		}
+	}
+
+	.buy-ls-wrap{
+		padding:30px 0;
+		@include mq($mobile) {
+			padding:15px;
+		}
+		.sub-fix-size-normal{
+			@include cf;
+			padding:0;
+		}
+		h3{
+			font-size:21px;
+			font-weight:600;
+			color:#24252c;
+			margin-bottom:30px;
+			@include mq($mobile) {
+				font-size:18px;
+				margin-bottom:15px;
+			}
+		}
+		ul{
+			@include cf;
+			margin:0 -6px;
+			@include mq($mobile) {
+				margin:-6px;
+			}
+			li{
+				@include box-sizing;
+				float:left;
+				text-align:center;
+				width:20%;
+				display:table;
+				align-items: center;
+				justify-content: center;
+				padding:0 6px;
+				@include mq($mobile) {
+					width:50%;
+					padding:6px;
+				}
+			}
+		}
+		.buy-ls-in{
+			display:table-cell;
+			vertical-align: middle;
+			position:relative;
+			border:1px solid #d2d2d2;
+			background-color:#f5f5f5;
+			height:148px;
+			padding:0 5px;
+			@include mq($mobile) {
+				height:auto;
+				padding:20px 5px;
+			}
+		}
+		strong{
+			display:block;
+			font-size:18px;
+			font-weight:600;
+			color:#24252c;
+			// padding-top:15px;
+			overflow : hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			@include mq($mobile) {
+				font-size:16px;
+				height:1rem;
+				line-height:1rem;
+			}
+			span{
+				font-size:14px;
+				@include mq($mobile) {
+					font-size:13px;
+				}
+			}
+		}
+		em{
+			display:block;
+			font-size:22px;
+			font-weight:600;
+			font-style:normal;
+			color:#24252c;
+			margin-top:19px;
+			span{
+				font-size:15px;
+			}
+		}
+	}
+
+	.port-graph-wrap{
+		padding:30px 0;
+		@include mq($mobile) {
+			padding:15px;
+		}
+		.sub-fix-size-normal{
+			@include cf;
+			padding:0;
+		}
+		h3{
+			font-size:21px;
+			font-weight:600;
+			color:#24252c;
+			margin-bottom:30px;
+			@include mq($mobile) {
+				font-size:18px;
+				margin-bottom:15px;
+			}
+		}
+		.port-graph-img-zone{
+			padding:0 51px;
+			@include mq($mobile) {
+				padding:0 15px;
+			}
+			img{
+				width:100%;
+			}
+		}
+	}
+
+	.port-buy-wrap{
+		padding-bottom:77px;
+		@include mq($mobile) {
+			padding:0 15px 30px;
+		}
+		.sub-fix-size-normal{
+			@include mq($mobile) {
+				padding:0;
+			}
+		}
+		ul{
+			// @include mq($mobile) {
+			// 	padding:0 15px;
+			// }
+			li{
+				@include cf;
+				border-bottom:2px solid #000;
+				padding: 20px 40px;
+				@include mq($mobile) {
+					padding: 10px 0;
+				}
+			}
+		}
+		.title-box{
+			float:left;
+			padding-top:14px;
+			@include mq($mobile) {
+				float:none;
+				padding-top:0;
+			}
+			@media (max-width: 1139px) and (min-width: 865px){
+				float:left;
+				padding-top:13px;
+			}
+			.check{
+				display:inline-block;
+				vertical-align:middle;
+				@include mq($mobile) {
+					display:block;
+					margin-bottom:10px;
+				}
+				@include mq($tablet) {
+					display:inline-block;
+					margin-bottom:0;
+				}
+				.mk-fromput{
+					.type02{
+						&:checked{
+							+ label{
+								&:before{
+									outline:0;
+								}
+							}
+						}
+					}
+					label{
+						font-size:32px;
+						font-weight:700;
+						color:#000;
+						padding-left:33px;
+						@include mq($mobile) {
+							font-size:20px;
+							padding-left:27px;
+						}
+					}
+				}
+			}
+			.month{
+				display:inline-block;
+				vertical-align:middle;
+				font-size:16px;
+				font-weight:700;
+				color:#4a4a4a;
+				margin-left:24px;
+				@include mq($mobile) {
+					text-align:right;
+					display:block;
+					margin-left:0px;
+					font-size:13px;
+				}
+				@include mq($tablet) {
+					margin-left:10px;
+					display:inline-block;
+				}
+				span{
+					color:#e84262;
+				}
+			}
+		}
+		.price-box{
+			float:right;
+			text-align:right;
+			@include mq($mobile) {
+				float:none;
+			}
+			@media (max-width: 1139px) and (min-width: 865px){
+				float:right;
+			}
+			span, strong{
+				display:block;
+			}
+			span{
+				// margin-bottom:10px;
+				font-size:21px;
+				font-weight:600;
+				color:#9b9b9b;
+				text-decoration:line-through;
+				@include mq($mobile) {
+					font-size:13px;
+				}
+				@include mq($tablet) {
+					font-size:15px;
+				}
+			}
+
+			strong{
+				font-size:32px;
+				font-weight:700;
+				color:#000;
+				@include mq($mobile) {
+					font-size:20px;
+				}
+				@include mq($tablet) {
+					font-size:25px;
+				}
+			}
+		}
+		.port-buy-btn{
+			text-align:right;
+			margin-top:19px;
+			.btn{
+				font-size:20px;
+				font-weight:600;
+				color:#fff;
+				width:199px;
+				height:57px;
+				line-height:55px;
+				background-color:#e84262;
+				border-color:#e84262;
+				// @include border-radius($border-radius : 29px);
+				@include mq($mobile) {
+					width:100%;
+				}
+				@include mq($tablet) {
+					width:199px;
+				}
+			}
+		}
+	}
+
+	.tab-slide-board-wrap{
+		padding-bottom:98px;
+		@include mq($mobile) {
+			padding-bottom:0;
+		}
+	}
+
+	.foot-advertise-wrap{
+		text-align:center;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#37529d+0,85c3bb+100 */
+		background: #37529d; /* Old browsers */
+		background: -moz-linear-gradient(left, #37529d 0%, #85c3bb 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left, #37529d 0%,#85c3bb 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right, #37529d 0%,#85c3bb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#37529d', endColorstr='#85c3bb',GradientType=1 ); /* IE6-9 */
+		.sub-fix-size-normal{
+			height:200px;
+			display:flex;
+			align-items: center;
+			justify-content: center;
+			@include mq($mobile) {
+				height:120px;
+			}
+		}
+		.foot-adv-area{
+			p{
+				font-size:30px;
+				font-weight:700;
+				color:#fff;
+				@include mq($mobile) {
+					font-size:18px;
+				}
+			}
+			a.btn{
+				font-size:13px;
+				font-weight:700;
+				color:#3d68a7;
+				width:180px;
+				height:30px;
+				line-height:28px;
+				margin-top:25px;
+				@include mq($mobile) {
+					width:auto;
+					margin-top:15px;
+				}
+			}
+		}
+	}
+}

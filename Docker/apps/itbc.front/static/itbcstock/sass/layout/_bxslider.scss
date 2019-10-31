@@ -1,0 +1,30 @@
+.bx-css-modi{
+	.bx-wrapper{
+		margin:0;
+		border:0;
+		box-shadow: none;
+		.bx-viewport{
+			font-size:0;
+		}
+		.bx-controls{
+			.bx-controls-direction{
+				a{
+					width:20px;
+					height:20px;
+					&.bx-prev{
+						background:url($img + 'content/ic_arrow_left.png') 0 0 no-repeat;
+					}
+					&.bx-next{
+						background:url($img + 'content/ic_arrow_right.png') 0 0 no-repeat;
+					}
+					&.disabled{
+						display:block;
+						opacity:0.5;
+						filter:alpha(opacity=50);
+						-ms-filter:alpha(opacity=50);
+					}
+				}
+			}
+		}
+	}
+}

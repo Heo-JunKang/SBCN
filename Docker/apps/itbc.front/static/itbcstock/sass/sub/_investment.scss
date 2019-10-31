@@ -1,0 +1,12 @@
+// 심층종목상담
+.inv-list-pg{
+	.sub-fix-size-normal{
+		// padding:0;
+		// padding-bottom:30px;
+		@include mq($mobile) {
+			padding-top:0;
+			padding-left:0;
+			padding-right:0;
+		}
+	}
+}

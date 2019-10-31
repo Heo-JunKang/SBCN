@@ -1,0 +1,124 @@
+/* footer */
+.economy-lab-wrap{
+	#footer {
+		border-top:1px solid #d2d2d2;
+		background-color:#fff;
+		.footer-in{
+			width:1140px;
+			margin:0 auto;
+			padding:36px 0;
+			@include mq($mobile) {
+				@include box-sizing;
+				width:100%;
+				padding:20px;
+			}
+		}
+		.foot-infor-box{
+			@include cf;
+			position:relative;
+		}
+		.foot-logo{
+			float:left;
+			width:220px;
+			// height:45px;
+			@include mq($mobile) {
+				float:none;
+				width:150px;
+				// height:30px;
+			}
+			img{
+				width:100%;
+				@include mq($mobile) {
+					// width:150px;
+				}
+			}
+		}
+		.foot-add{
+			float:left;
+			margin:0 -3px;
+			padding-left:73px;
+			@include mq($mobile) {
+				float:none;
+				padding-left:0;
+				margin-top:20px;
+			}
+			span{
+				position:relative;
+				font-size:13px;
+				font-weight:500;
+				line-height:22px;
+				color:#000;
+				padding:0 3px;
+				&:after{
+					content:"";
+					display:block;
+					width:1px;
+					height:15px;
+					background-color: #000;
+					position:absolute;
+					top:3px;
+					left:-1px;
+				}
+				&.line-x{
+					&:after{
+						display:none;
+					}
+				}
+			}
+		}
+		.foot-link{
+			position:absolute;
+			top:0;
+			right:165px;
+			@include mq($mobile) {
+				position:static;
+				margin-top:20px;
+			}
+			a{
+				display:block;
+				font-size:13px;
+				line-height:22px;
+				color:#000;
+				letter-spacing: 0.3px;
+			}
+		}
+		.foot-etc-box{
+			margin-top:10px;
+			@include mq($mobile) {
+				margin:0 -11.5px;
+				margin-top:20px;
+			}
+			ul{
+				@include cf;
+				width:700px;
+				padding-left:280px;
+				@include mq($mobile) {
+					width:auto;
+					padding:0;
+				}
+				li{
+					float:left;
+					padding:6px 11.5px;
+					img{
+						//
+					}
+				}
+			}
+		}
+		address{
+			margin-top:10px;
+			padding-left:290px;
+			font-style:normal;
+			font-size:11px;
+			font-weight:500;
+			letter-spacing:0.3px;
+			color:#000;
+			@include mq($mobile) {
+				margin-top:15px;
+				padding-left:0;
+			}
+		}
+	}
+
+}
+

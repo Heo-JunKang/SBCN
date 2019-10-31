@@ -1,0 +1,49 @@
+<?php $__env->startSection('js'); ?>
+
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo e($title); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <!-- sub-contents-start -->
+    <div class="sub-contents-wrap">
+        <!-- sub-location -->
+        <div class="sub-location-wrap">
+            <div class="sub-fix-in">
+                <div class="sub-tt-hd-box">
+					<h2 class="sub-title"><?php echo e($sub_title); ?></h2>
+				</div>
+
+				<div class="tab">
+					<ul>
+                        <?php foreach($policy as $v): ?>
+                            <li class="<?php echo e($v->policy_id == $id?' sub-lnb-on':''); ?>"><a href="/account/policy/<?php echo e($v->policy_id); ?>"><span><?php echo e($v->title); ?></span></a></li>
+                        <?php endforeach; ?>
+					</ul>
+				</div>
+            </div>
+        </div>
+        <!-- //sub-location -->
+
+        <!-- 단락별 클래스 적용 -->
+        <div class="sub-page-wrap mb-provision-pg">
+			<!-- sub-mobile-fix-size -->
+			<div class="sub-fix-size">
+                <div class="handling-prev sevice">
+                    <?php echo $contents; ?>
+
+    			</div>
+            </div>
+        <!-- //단락별 클래스 적용 -->
+    </div>
+    <!-- //sub-contents-start -->
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

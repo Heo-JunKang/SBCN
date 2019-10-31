@@ -1,0 +1,196 @@
+<?php $__env->startSection('js'); ?>
+    <script src="<?php echo e(config_item('js_url')); ?>boards/Board-more.js?ver=<?php echo e(config_item('js_ver')); ?>"></script>
+    <script type="text/javascript">
+        window.onload   = function(){
+            var options = {per_page:'<?php echo e($per_page); ?>'};
+            board   = new Board_more(<?php echo $items; ?> , options);
+            board.render_items();
+            board.render_page();
+        }
+
+        $(document).on('click','.btn_more',function() {
+            board.move_page();
+        });
+
+        $(document).on('click','.btn-search',function() {
+            board.do_search();
+        });
+    </script>
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo e($title); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+    <?php /*<!-- sub-contents-start -->*/ ?>
+    <?php /*<div class="sub-contents-wrap">*/ ?>
+        <?php /*<?php echo $__env->make('partials.sub_menu',['sub_title'=>$sub_title], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>*/ ?>
+
+        <?php /*<!-- 단락별 클래스 적용 -->*/ ?>
+        <?php /*<div class="sub-page-wrap customer-servic">*/ ?>
+
+            <?php /*<!-- 전문가 상세 -->*/ ?>
+            <?php /*<div class="sub-pg-pro-detail-wrap">*/ ?>
+
+                <?php /*<!-- tab-slide-board-wrap -->*/ ?>
+                <?php /*<div class="tab-slide-board-wrap">*/ ?>
+                    <?php /*<div class="sub-fix-size-normal">*/ ?>
+                        <?php /*<div class="slide-board-wrap">*/ ?>
+                            <?php /*<ul>*/ ?>
+                                <?php /*<?php foreach($article->contents->items as $v): ?>*/ ?>
+                                <?php /*<li>*/ ?>
+                                    <?php /*<!-- title -->*/ ?>
+                                    <?php /*<div class="title-area">*/ ?>
+                                        <?php /*<a href="#none" class="tg-btn">*/ ?>
+                                            <?php /*<div class="title-in">*/ ?>
+                                                <?php /*<div class="slide-txt day"><?php echo e(substr($v->created_at,0,10)); ?></div>*/ ?>
+                                                <?php /*<!-- <div class="slide-txt question">Q.</div> -->*/ ?>
+                                                <?php /*<div class="slide-txt tt">*/ ?>
+                                                    <?php /*<?php echo e($v->title); ?>*/ ?>
+                                                <?php /*</div>*/ ?>
+                                            <?php /*</div>*/ ?>
+                                            <?php /*<i class="arrow-mark"></i>*/ ?>
+                                        <?php /*</a>*/ ?>
+                                    <?php /*</div>*/ ?>
+                                    <?php /*<!-- //title -->*/ ?>
+
+                                    <?php /*<!-- conbox -->*/ ?>
+                                    <?php /*<div class="conbox-area">*/ ?>
+                                        <?php /*<div class="conbox-in">*/ ?>
+                                            <?php /*<?php echo $v->contents; ?>*/ ?>
+                                        <?php /*</div>*/ ?>
+                                    <?php /*</div>*/ ?>
+                                    <?php /*<!-- //conbox -->*/ ?>
+                                <?php /*</li>*/ ?>
+                                <?php /*<?php endforeach; ?>*/ ?>
+                            <?php /*</ul>*/ ?>
+                        <?php /*</div>*/ ?>
+
+                        <?php /*<div class="more-btn-box">*/ ?>
+                            <?php /*<a href="javascript:void(0)" class="btn medium basic btn_more">더보기<i class="arrow-mark"></i></a>*/ ?>
+                        <?php /*</div>*/ ?>
+
+                        <?php /*<!--div class="board-search-zone">*/ ?>
+                            <?php /*<form action="">*/ ?>
+                                <?php /*<div class="in-search">*/ ?>
+                                    <?php /*<div class="write">*/ ?>
+                                        <?php /*<i class="magnifier-icon"></i>*/ ?>
+                                        <?php /*<input type="text" class="form-area">*/ ?>
+                                    <?php /*</div>*/ ?>
+                                    <?php /*<div class="search-btn">*/ ?>
+                                        <?php /*<button type="submit" class="btn medium weighty">검색</button>*/ ?>
+                                    <?php /*</div>*/ ?>
+                                <?php /*</div>*/ ?>
+                            <?php /*</form>*/ ?>
+                        <?php /*</div-->*/ ?>
+                    <?php /*</div>*/ ?>
+                <?php /*</div>*/ ?>
+                <?php /*<!-- //tab-slide-board-wrap -->*/ ?>
+
+                <?php /*<!-- 무료체험 신청 -->*/ ?>
+                <?php /*<div class="foot-advertise-wrap">*/ ?>
+                    <?php /*<div class="sub-fix-size-normal">*/ ?>
+                        <?php /*<div class="foot-adv-area">*/ ?>
+                            <?php /*<p>일단 경험해보세요. 3일이면 충분합니다.</p>*/ ?>
+                            <?php /*<a href="/experience" class="btn medium basic">무료체험 신청</a>*/ ?>
+                        <?php /*</div>*/ ?>
+                    <?php /*</div>*/ ?>
+                <?php /*</div>*/ ?>
+                <?php /*<!-- //무료체험 신청 -->*/ ?>
+
+            <?php /*</div>*/ ?>
+            <?php /*<!-- //전문가 상세 -->*/ ?>
+
+        <?php /*</div>*/ ?>
+        <?php /*<!-- //단락별 클래스 적용 -->*/ ?>
+    <?php /*</div>*/ ?>
+
+    <!-- sub-contents-start -->
+    <div class="sub-contents-wrap">
+    <?php echo $__env->make('partials.sub_menu',['sub_title'=>$sub_title], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <!-- search -->
+        <div class="gray-color-box">
+            <div class="sub-fix-size-normal pd-none">
+                <form id="form-index" action="/board/reads/<?php echo e($cid); ?>" method="get" onsubmit="return false;">
+
+                    <input type="hidden" name="page" value="1" />
+                    <input type="hidden" name="per_page"/>
+
+                    <div class="list-search-write-box">
+                        <div class="write"><input type="text" name="where[q]" class="form-area" value="<?php echo e($where['q']); ?>" placeholder="검색어 입력" style="border-radius:0px;"></div>
+                        <div class="btn-zone"><button type="button" class="btn basic medium btn-search" style="border-radius: 0px;">검색</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- //search -->
+
+        <!-- page -->
+        <div class="sub-page-wrap sub-con-in">
+            <div class="sub-pg-pro-detail-wrap">
+
+                <!-- sub-mobile-fix-size -->
+                <div class="sub-fix-size-normal">
+                    <div class="list-search-board-box">
+                        <ul id="template-box-items"></ul>
+                    </div>
+
+                    <!-- 더보기 -->
+                    <div id="template-box-page" class="list-plus-btn"></div>
+                    <!-- //더보기 -->
+                </div>
+                <!-- //sub-mobile-fix-size -->
+
+                <!-- 무료체험 신청 -->
+                <div class="foot-advertise-wrap">
+                    <div class="sub-fix-size-normal">
+                        <div class="foot-adv-area">
+                            <p>일단 경험해보세요. 3일이면 충분합니다.</p>
+                            <a href="/experience" class="btn basic">무료체험 신청</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- //무료체험 신청 -->
+            </div>
+        </div>
+        <!-- //page -->
+
+    </div>
+    <!-- //sub-contents-start -->
+
+    <script id="template-items" type="text/x-handlebars-template">
+        {{#compare this.contents.paginations.total_page '>' 0}}
+        {{#each this.contents.items}}
+        <li>
+            <span class="num">{{ this.contents_id }}</span>
+            <p class="tt"><a href="{{get_location_path}}/{{this.contents_id}}" class="form-link" onclick="return false;" data-form="form-index">{{this.title}}</a></p>
+            <span class="day">{{this.created_at}}</span>
+        </li>
+        {{/each}}
+        {{else}}
+        <li class="thum-li">
+            <div class="thum-div">
+                검색 내용이 없습니다.
+            </div>
+        </li>
+        {{/compare}}
+    </script>
+
+
+    <script id="template-page" type="text/x-handlebars-template">
+        {{#compare this.contents.paginations.total_page '!=' '1'}}
+        <a href="javascript:void(0)" class="btn medium basic btn_more" style="margin-bottom:30px;">더보기<i class="arrow-mark"></i></a>
+        {{/compare}}
+    </script>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

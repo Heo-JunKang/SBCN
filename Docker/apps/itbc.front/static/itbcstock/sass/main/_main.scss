@@ -1,0 +1,154 @@
+#content.main{
+	.realtime-event-area{
+		.shadowbox{
+			height:240px;
+		}
+	}
+
+	.main-box-division-wrap{
+		.divi-box{
+			.shadowbox{
+				height:239px;
+				@include mq($mobile) {
+					height:auto;
+				}
+			}
+			@include mq($mobile) {
+				&.ma-mobile-tab{
+					.shadowbox{
+						margin-top:40px;
+					}
+				}
+			}
+			@include mq($tablet) {
+				&.ma-mobile-tab{
+					.shadowbox{
+						margin-top:0;
+					}
+				}
+			}
+		}
+	}
+}
+
+// 수직 슬라이드 리스트
+.main-experience-box{
+	position: relative;
+	@include cf;
+	.acc-stats-box{
+		float:left;
+		@include mq($mobile) {
+			position:relative;
+			float:none;
+			height:219px;
+		}
+		.lee-sedol-cut{
+			position:absolute;
+			bottom:-13px;
+			left:-8px;
+			z-index:1;
+			@include mq($mobile) {
+				bottom:0;
+				left:0;
+				right:0;
+				text-align:center;
+				border-bottom:1px solid #9b9b9b;
+			}
+			@include mq($tablet) {
+				left:-49px;
+			}
+			img{
+				width:245px;
+				@include mq($mobile) {
+					margin-left:-120px;
+				}
+			}
+		}
+		.accumulate-claimant{
+			position: relative;
+			// z-index: 1;
+			text-align:center;
+			padding-top: 56px;
+			padding-left: 172px;
+			@include mq($mobile) {
+				padding:0;
+				padding-top:50px;
+				margin-left:107px;
+			}
+			span, strong{
+				display:block;
+				line-height:1;
+			}
+			span{
+				font-size:13px;
+				font-weight:500;
+				color:#4a4a4a;
+				margin-bottom:8px;
+			}
+			strong{
+				font-size:36px;
+				font-weight:700;
+				color:#c72b32;
+			}
+			.btn-dv{
+				margin-top:24px;
+				display:inline-block;
+				width:102px;
+				height:43px;
+				line-height:43px;
+				@include border-radius($border-radius : 25px);
+				background-color:#c82122;
+				&:after{
+					text-align:center;
+					content:'신청하기';
+					font-size:16px;
+					font-weight:700;
+					color:#fff;
+				}
+			}
+		}
+		.app-btn{
+			z-index:2;
+			position:absolute;
+			top:137px;
+			left:207px;
+			width:102px;
+			height:43px;
+			@include mq($mobile) {
+				top:131px;
+				left:107px;
+				right:0;
+				margin:0 auto;
+			}
+		}
+	}
+	.acc-stats-list{
+		float:right;
+		width:318px;
+		@include mq($mobile) {
+			float:none;
+			width:100%;
+		}
+		.haed-box{
+			colgroup{
+				col{
+					&.col-1{
+						width:auto;
+					}
+					&.col-2{
+						width:100px;
+					}
+				}
+			}
+		}
+		.body-box{
+			.verti-slide-ul{
+				.verti-slide-li{
+					.cell-04{
+						width:100px;
+					}
+				}
+			}
+		}
+	}
+}

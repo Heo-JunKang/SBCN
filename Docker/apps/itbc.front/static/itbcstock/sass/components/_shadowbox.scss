@@ -1,0 +1,12 @@
+.shadowbox{
+	@include box-sizing;
+	position:relative;
+	background-color:#fff;
+	padding:15px 20px;
+	-moz-box-shadow: 0px 1px 5px #000000;
+	-webkit-box-shadow: 0px 1px 5px #000000;
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+	&.color-no-01{
+		background-color:#ebe5da;
+	}
+}

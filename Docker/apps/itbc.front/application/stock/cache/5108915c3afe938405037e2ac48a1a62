@@ -1,0 +1,52 @@
+<?php $__env->startSection('js'); ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            setTimeout(function() {
+                location.href   = '/main';
+            }, 5000)
+        })
+    </script>
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+
+<?php $__env->appendSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo e($title); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <!-- wrap -->
+    <div id="wrap">
+
+        <!-- intro -->
+        <div class="itbc-intro-wrap">
+            <!-- intro-bg -->
+            <div class="intro-bg"></div>
+            <!-- //intro-bg -->
+
+            <!-- intro-content -->
+            <div class="intro-content">
+                <div class="intro-table">
+                    <div class="intro-cell">
+                        <h1 class="intro-h1"><img src="<?php echo e(config_item('image_url')); ?>intro/logo.png" alt="itbc stock"></h1>
+                        <p class="intro-txt">
+                            불황은 또한 기회다
+                            <span>- Warren Buffett</span>
+                        </p>
+                        <a href="/main" class="intro-more-btn"><img src="<?php echo e(config_item('image_url')); ?>intro/btn_homepage.png" alt="more"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- //intro-content -->
+        </div>
+        <!-- //intro -->
+
+    </div>
+    <!-- //wrap -->
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.intro', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

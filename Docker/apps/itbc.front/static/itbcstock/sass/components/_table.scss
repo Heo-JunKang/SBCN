@@ -1,0 +1,90 @@
+.table{
+	width:100%;
+	padding:0;
+	border:0;
+	border-spacing:0px;
+	border-collapse:collapse;
+	th, td{
+		padding:0;
+		font-size:14px;
+		&.text-left{
+			text-align:left !important;
+		}
+		&.text-right{
+			text-align:right !important;
+		}
+		&.text-center{
+			text-align:center !important;
+		}
+	}
+	th{
+		color:#9b9b9b;
+	}
+
+	td{
+		color:#000;
+		border-bottom:1px solid #d2d2d2;
+	}
+
+	thead{
+		tr{
+			th{
+				//
+			}
+		}
+	}
+
+	tbody{
+		tr{
+			td{
+				//
+			}
+		}
+	}
+
+	&.date-table{
+		border-top:1px solid #000;
+		border-bottom:1px solid #000;
+		th, td{
+			text-align:left;
+			strong{
+				font-weight:600;
+				&.red{
+					color:#c82122;
+				}
+				&.blue{
+					color:#425e99;
+				}
+			}
+		}
+		thead{
+			tr{
+				th{
+					background-color:#f8f8f8;
+					font-weight:600;
+					padding:4px 10px;
+					border-bottom:1px solid #d2d2d2;
+				}
+			}
+		}
+
+		tbody{
+			tr{
+				&:last-child{
+					td{
+						border-bottom:0;
+					}
+				}
+				td{
+					background-color:#fff;
+					vertical-align:top;
+					padding:9px 10px;
+				}
+			}
+		}
+
+		.bd-sms-con{
+			font-weight:500;
+		}
+	}
+}
