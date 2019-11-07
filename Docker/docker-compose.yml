@@ -1,0 +1,176 @@
+version: '3.7'
+
+services:
+  new_premium_api:
+    image: lzhqw1882/apm-7.2:1.6
+    ports:
+      - "8000:80" # 관리자
+      - "8001:80" # 크론
+      - "8002:80" # 서비스
+    volumes:
+      - ./apps/new_premium_api:/var/www/html
+      - ./configs/new_premium_api/sites-enabled:/etc/apache2/sites-enabled:ro
+      - ./configs/new_premium_api/conf-enabled:/etc/apache2/conf-enabled
+      - ./logs/new_premium_api:/var/log/apache2
+    container_name: new_premium_api
+    tty: true
+    restart: always
+
+  itbc_api:
+    image: lzhqw1882/apm-7.2:1.6
+    ports:
+      - "6000:80" # 관리자
+      - "6001:80" # 서비스
+    volumes:
+      - ./apps/itbc.api:/var/www/html
+      - ./configs/itbc.api/sites-enabled:/etc/apache2/sites-enabled:ro
+      - ./configs/itbc.api/conf-enabled:/etc/apache2/conf-enabled
+      - ./logs/itbc.api:/var/log/apache2
+    container_name: itbc_api
+    tty: true
+    restart: always
+
+  tudal_api:
+    image: lzhqw1882/apm-7.2:1.6
+    ports:
+      - "6009:80" # tudal 관리자
+      - "6010:80" # tudal 서비스
+    volumes:
+      - ./apps/itbc.api:/var/www/html
+      - ./configs/itbc.api/sites-enabled:/etc/apache2/sites-enabled:ro
+      - ./configs/itbc.api/conf-enabled:/etc/apache2/conf-enabled
+      - ./logs/itbc.api:/var/log/apache2
+    container_name: tudal_api
+    tty: true
+    restart: always
+
+  itbc_admin:
+      image: lzhqw1882/apm-7.2:1.6
+      ports:
+        - "6002:80" # 관리자
+      volumes:
+        - ./apps/itbc.admin:/var/www/html
+        - ./configs/itbc.admin/sites-enabled:/etc/apache2/sites-enabled:ro
+        - ./configs/itbc.admin/conf-enabled:/etc/apache2/conf-enabled
+        - ./logs/itbc.admin:/var/log/apache2
+      container_name: itbc_admin
+      tty: true
+      restart: always
+
+  tudal_admin:
+    image: lzhqw1882/apm-7.2:1.6
+    ports:
+      - "6019:80" # tudal 관리자
+    volumes:
+      - ./apps/itbc.admin:/var/www/html
+      - ./configs/itbc.admin/sites-enabled:/etc/apache2/sites-enabled:ro
+      - ./configs/itbc.admin/conf-enabled:/etc/apache2/conf-enabled
+      - ./logs/itbc.admin:/var/log/apache2
+    container_name: tudal_admin
+    tty: true
+    restart: always
+
+  itbc_front:
+      image: lzhqw1882/apm-7.2:1.6
+      ports:
+        - "6003:80" # 사용자
+        - "6004:80" # accounts
+      volumes:
+        - ./apps/itbc.front:/var/www/html
+        - ./configs/itbc.front/sites-enabled:/etc/apache2/sites-enabled:ro
+        - ./configs/itbc.front/conf-enabled:/etc/apache2/conf-enabled
+        - ./logs/itbc.front:/var/log/apache2
+      container_name: itbc_front
+      tty: true
+      restart: always
+
+  tudal_front:
+    image: lzhqw1882/apm-7.2:1.6
+    ports:
+      - "6020:80" # tudal accounts
+      - "6021:80" # tudal stock
+      - "6022:80" # tudal tv
+    volumes:
+      - ./apps/itbc.front:/var/www/html
+      - ./configs/itbc.front/sites-enabled:/etc/apache2/sites-enabled:ro
+      - ./configs/itbc.front/conf-enabled:/etc/apache2/conf-enabled
+      - ./logs/itbc.front:/var/log/apache2
+    container_name: tudal_front
+    tty: true
+    restart: always
+
+  new_premium_office:
+      image: lzhqw1882/apm-7.2:1.6
+      ports:
+        - "7200:80" # 프리미엄경제연구소
+        - "8200:80" # 프리미엄경제TV
+        - "9200:80" # 투봇
+        - "10200:80" # itbc stock
+
+      volumes:
+        - ./apps/new_premium_office:/var/www/html
+        - ./configs/new_premium_office/sites-enabled:/etc/apache2/sites-enabled:ro
+        - ./configs/new_premium_office/conf-enabled:/etc/apache2/conf-enabled
+        - ./logs/new_premium_office:/var/log/apache2
+      container_name: new_premium_office
+      tty: true
+      restart: always
+      links:
+          - new_premium_api
+
+  new_premium_service:
+      image: lzhqw1882/apm-7.2:1.6
+      ports:
+        - "7300:80"   # 프리미엄경제연구소
+        - "8300:80"   # 프리미엄경제TV
+        - "9300:80"   # 투봇
+        - "10300:80"  # itbc stock
+      volumes:
+        - ./apps/new_premium_service:/var/www/html
+        - ./configs/new_premium_service/sites-enabled:/etc/apache2/sites-enabled:ro
+        - ./configs/new_premium_service/conf-enabled:/etc/apache2/conf-enabled
+        - ./logs/new_premium_service:/var/log/apache2
+      container_name: new_premium_service
+      tty: true
+      restart: always
+      links:
+          - new_premium_api
+
+  edaily:
+      image: lzhqw1882/apm-7.2:1.5
+      ports:
+        - "8081:80"
+      volumes:
+        - ./apps/edaily:/var/www/html
+        - ./configs/edaily/sites-enabled:/etc/apache2/sites-enabled:ro
+        - ./configs/edaily/conf-enabled:/etc/apache2/conf-enabled
+        - ./logs/edaily:/var/log/apache2
+      container_name: edaily
+      tty: true
+      restart: always
+
+  #study:
+  #    image: lzhqw1882/apm-7.2:1.6 #Docker Hub에 개발환경
+  #    ports:
+  #      - "1000:80" #포트번호 1000으로 접속하면 80으로 인식
+  #    volumes: #공유 디렉토리
+  #      - ./apps/study:/var/www/html #컨테이너 안에있는 소스 디렉토리
+  #      - ./configs/study/sites-enabled:/etc/apache2/sites-enabled:ro
+  #      - ./configs/study/conf-enabled:/etc/apache2/conf-enabled
+  #      - ./logs/study:/var/log/apache2
+  #    container_name: study
+  #    tty: true
+  #    restart: always
+
+  new_premium_backend:
+       image: lzhqw1882/apm-7.2:1.6
+       ports:
+         - "9001:80" # 프리미엄경제연구소
+       volumes:
+         - ./apps/new_premium_backend:/var/www/html
+         - ./configs/new_premium_backend/sites-enabled:/etc/apache2/sites-enabled:ro
+         - ./configs/new_premium_backend/conf-enabled:/etc/apache2/conf-enabled
+         - ./logs/new_premium_backend:/var/log/apache2
+       container_name: new_premium_backend
+       tty: true
+       restart: always
